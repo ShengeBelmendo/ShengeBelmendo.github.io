@@ -111,7 +111,13 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MARCO_leaderboard.png">
-<meta property="og:updated_time" content="2019-02-24T11:38:43.506Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/example.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/interface.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/reasoning.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/answer.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/comparition.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/FQA_net.jpg">
+<meta property="og:updated_time" content="2019-02-24T12:34:25.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器阅读理解(MRC) 和 SQuAD">
 <meta name="twitter:description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
@@ -367,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  1.9k
                 </span>
               
 
@@ -383,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  5
+                  7
                 </span>
               
             </div>
@@ -423,19 +429,57 @@
 <p>​    详情请看以下论文:</p>
 <p>Guokun Lai, Qizhe Xie, Hanxiao Liu, Yiming Yang, Eduard Hovy.<a href="https://arxiv.org/abs/1704.04683" target="_blank" rel="noopener">RACE: Large-scale ReAding Comprehension Dataset From Examinations</a> arXiv:1704.04683</p>
 <h3 id="1-2-3-抽取式"><a href="#1-2-3-抽取式" class="headerlink" title="1.2.3 抽取式"></a>1.2.3 抽取式</h3><p>​    抽取式数据集，即给定一篇文章，给一个问题，答案则是从文章中抽取出来的一段连续的文字，可以是一个词也可以是多个词。</p>
-<p>&lt;<font size="5">&gt;<center><a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank" rel="noopener">SQuAD</a></center></font></p>
+<font size="5">&gt;<center><a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank" rel="noopener">SQuAD</a></center></font>
+
 <p>​        SQuAD由斯坦福大学发布，是行业内公认的机器阅读理解领域的顶级水平测试，在学术界和工业界有着非常高的认可度和广泛的影响力，是阅读理解乃至自然语言处理领域里比较权威的数据集。</p>
 <p>​    SQuAD从维基百科中选取了500篇文章，每篇文章划分成一些段落，每个段落有若干个问题，以此构建了一个包含十万个问题的大规模机器阅读理解数据集，其问题和答案都是让crowdworkers进行人工生成。</p>
 <p>​    SQuAD16年6月发布1.0版本，18年6月发布2.0版本。2.0版本和1.0版本的区别主要在于2.0版本多了很多根据文章无法回答的问题，所以机器需要去判断根据给定的文章能不能回答问题，这也让2.0版本的数据集增加了难度。但从实际应用角度考虑，2.0版本的数据集显然更实用更贴近生产应用实际，机器也需要判断问题能不能回答。</p>
 <p><img src="SQuAD_leaderboard.png" alt></p>
+<center>图1 : SQuAD2.0的leaderboard</center>
+
 <p>​    稍后会详细介绍SQuAD数据集，以下是数据集的论文链接:</p>
 <p>SQuAD 1.0: <a href="https://arxiv.org/abs/1606.05250" target="_blank" rel="noopener">SQuAD: 100,000+ Questions for Machine Comprehension of Text</a></p>
 <p>SQuAD 2.0: <a href="https://arxiv.org/abs/1806.03822" target="_blank" rel="noopener">Know What You Don’t Know: Unanswerable Questions for SQuAD</a></p>
-<h3 id="1-2-4-综合式"><a href="#1-2-4-综合式" class="headerlink" title="1.2.4 综合式"></a>1.2.4 综合式</h3><p>&lt;<font size="5">&gt;<center><a href="http://www.msmarco.org/leaders.aspx" target="_blank" rel="noopener">MS MARCO</a></center></font></p>
+<h3 id="1-2-4-综合式"><a href="#1-2-4-综合式" class="headerlink" title="1.2.4 综合式"></a>1.2.4 综合式</h3><font size="5">&gt;<center><a href="http://www.msmarco.org/leaders.aspx" target="_blank" rel="noopener">MS MARCO</a></center></font>
+
 <p>​    MARCO 数据集中的问题全都基于来自微软必应搜索（BING）引擎和微软小娜人工智能助手（Cortana）的已匿名处理的真实查询。此外，相关回答是由真人参考真实网页编写的，并对其准确性进行了验证。而在每一个问题中，MARCO 提供多篇来自搜索结果的网页文档，系统需要根据这些文档来回答给定的问题。就像人类在搜索引擎给定的结果中自行筛选信息一样，这些文档中是否有对应的答案、在哪一篇文章中，都需要系统自行判断，甚至还需要结合多篇文章做出提炼与总结，而这也对机器的阅读理解能力提出了更高的要求。</p>
 <p><img src="MARCO_leaderboard.png" alt></p>
+<center>图2 : MS MARCO的leaderboard</center>
+
 <h1 id="2-SQuAD"><a href="#2-SQuAD" class="headerlink" title="2. SQuAD"></a>2. SQuAD</h1><h2 id="2-1-数据集特点"><a href="#2-1-数据集特点" class="headerlink" title="2.1 数据集特点"></a>2.1 数据集特点</h2><p>​    前文提到过了SQuAD的数据集格式和影响力，下面主要介绍一些数据集的细节和特点。</p>
-<p>​    </p>
+<p><img src="example.png" alt></p>
+<p>​    <center>图3 : 一个段落和对应的问题、答案</center></p>
+<ul>
+<li>问题(query)的复杂性</li>
+</ul>
+<p>因为问题是由人类提出的，而且他们在被要求提出问题时就被要求问题要尽可能复杂并且问题与原文使用的词汇要尽可能不重叠，这导致了回答问题需要一定的推理能力，比如问题和原文中对应答案的段落之间存在词汇替换，这种替换可能是简单的同义词，可能是需要外部知识来理解，也可能出现语法、句式的不同，甚至需要多个句子联合推理等等。</p>
+<p><img src="interface.png" alt></p>
+<center>图4 : 构造众包数据集的网站接口</center>
+
+<p><img src="reasoning.png" alt></p>
+<center>图5 : 回答问题需要多种不同的推理知识</center>
+
+<ul>
+<li>答案的多样性</li>
+</ul>
+<p>答案是从原文中抽取出来的片段，可能是一个词也可能是多个词，可能是日期、其他数字、人名、地名、名词短语、动词短语等等各种类型，答案的多样性也增加了阅读理解的难度。</p>
+<p><img src="answer.png" alt></p>
+<center>图6 : 答案的种类</center>
+
+<h2 id="2-2-SQuAD-2-0"><a href="#2-2-SQuAD-2-0" class="headerlink" title="2.2 SQuAD 2.0"></a>2.2 SQuAD 2.0</h2><p>SQuAD2.0是在1.0共10w个问题的基础上增加了5w个新的根据上下文没法回答的问题。机器在阅读寻找答案的同时，不仅要判断最可能的位置，还要判断到底问题可不可以被回答，这种改进更符合实际的阅读理解需求但也增加了不少难度。</p>
+<p><img src="comparition.png" alt></p>
+<center>图7 : 一些模型在1.0和2.0数据集上的对比, 模型和人类的差距在2.0数据集上显著增大</center>
+
+<h2 id="2-3-Pipeline"><a href="#2-3-Pipeline" class="headerlink" title="2.3 Pipeline"></a>2.3 Pipeline</h2><p><img src="FQA_net.jpg" alt></p>
+<center>图8 : SQuAD问题的pipeline</center>
+
+<p>大部分围绕SQuAD的模型架构基本上可以分为四个层，embedding层、encode层、interaction层、answer层。</p>
+<ul>
+<li>embedding层 : 将文章和问题中的tokens映射成向量表示，可以是word层面的embedding，也可以包含character层面的embedding。</li>
+<li>encoder层 : 利用RNN对文章和问题向量进行编码，获得上下文相关的词汇的向量表示。</li>
+<li>interaction层 : 主要利用注意力机制去编码文章和问题向量，捕捉问题和文章之间的交互关系，生成包含了问题语义信息的原文表示。 </li>
+<li>answer层 : 基于编码过的文章向量和问题向量来预测答案范围，一般预测答案的start和end两个位置。</li>
+</ul>
 
       
     </div>
@@ -623,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-阅读理解问题的分类"><span class="nav-text">1.2 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-阅读理解问题的分类"><span class="nav-text">1.2 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-SQuAD-2-0"><span class="nav-text">2.2 SQuAD 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Pipeline"><span class="nav-text">2.3 Pipeline</span></a></li></ol></li></ol></div>
             
 
           </div>
