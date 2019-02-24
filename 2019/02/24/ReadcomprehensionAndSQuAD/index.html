@@ -109,13 +109,13 @@
 <meta property="og:site_name" content="Shenge&#39;s Blog">
 <meta property="og:description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/ReadcomprehensionAndSQuAD/MARCO_leaderboard.png">
-<meta property="og:updated_time" content="2019-02-24T11:10:18.439Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MARCO_leaderboard.png">
+<meta property="og:updated_time" content="2019-02-24T11:16:00.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器阅读理解(MRC) 和 SQuAD">
 <meta name="twitter:description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
 
 
 
@@ -431,7 +431,7 @@
 <p>​        SQuAD由斯坦福大学发布，是行业内公认的机器阅读理解领域的顶级水平测试，在学术界和工业界有着非常高的认可度和广泛的影响力，是阅读理解乃至自然语言处理领域里比较权威的数据集。</p>
 <p>​    SQuAD从维基百科中选取了500篇文章，每篇文章划分成一些段落，每个段落有若干个问题，以此构建了一个包含十万个问题的大规模机器阅读理解数据集，其问题和答案都是让crowdworkers进行人工生成。</p>
 <p>​    SQuAD16年6月发布1.0版本，18年6月发布2.0版本。2.0版本和1.0版本的区别主要在于2.0版本多了很多根据文章无法回答的问题，所以机器需要去判断根据给定的文章能不能回答问题，这也让2.0版本的数据集增加了难度。但从实际应用角度考虑，2.0版本的数据集显然更实用更贴近生产应用实际，机器也需要判断问题能不能回答。</p>
-<p><img src="ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png" alt></p>
+<p><img src="SQuAD_leaderboard.png" alt></p>
 <p>​    稍后会详细介绍SQuAD数据集，以下是数据集的论文链接:</p>
 <p>SQuAD 1.0: <a href="https://arxiv.org/abs/1606.05250" target="_blank" rel="noopener">SQuAD: 100,000+ Questions for Machine Comprehension of Text</a></p>
 <p>SQuAD 2.0: <a href="https://arxiv.org/abs/1806.03822" target="_blank" rel="noopener">Know What You Don’t Know: Unanswerable Questions for SQuAD</a></p>
@@ -439,7 +439,7 @@
 <li><a href="http://www.msmarco.org/leaders.aspx" target="_blank" rel="noopener">MS MARCO</a></li>
 </ul>
 <p>​    MARCO 数据集中的问题全都基于来自微软必应搜索（BING）引擎和微软小娜人工智能助手（Cortana）的已匿名处理的真实查询。此外，相关回答是由真人参考真实网页编写的，并对其准确性进行了验证。而在每一个问题中，MARCO 提供多篇来自搜索结果的网页文档，系统需要根据这些文档来回答给定的问题。就像人类在搜索引擎给定的结果中自行筛选信息一样，这些文档中是否有对应的答案、在哪一篇文章中，都需要系统自行判断，甚至还需要结合多篇文章做出提炼与总结，而这也对机器的阅读理解能力提出了更高的要求。</p>
-<p><img src="ReadcomprehensionAndSQuAD/MARCO_leaderboard.png" alt></p>
+<p><img src="MARCO_leaderboard.png" alt></p>
 <h2 id="2-SQuAD"><a href="#2-SQuAD" class="headerlink" title="2. SQuAD"></a>2. SQuAD</h2><h3 id="2-1-数据集特点"><a href="#2-1-数据集特点" class="headerlink" title="2.1 数据集特点"></a>2.1 数据集特点</h3><p>​    前文提到过了SQuAD的数据集格式和影响力，下面主要介绍一些数据集的细节和特点。</p>
 <p>​    </p>
 
