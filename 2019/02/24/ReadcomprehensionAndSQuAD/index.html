@@ -101,14 +101,16 @@
 
 
 
-<meta name="description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
+<meta name="description" content="本文仅供作者复习使用，大量参考了Danqi Chen的博士论文  1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
 <meta name="keywords" content="nlp,MRC,Deep learning,SQuAD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器阅读理解(MRC) 和 SQuAD">
 <meta property="og:url" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
+<meta property="og:description" content="本文仅供作者复习使用，大量参考了Danqi Chen的博士论文  1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MCTest.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/google_search.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MARCO_leaderboard.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/example.png">
@@ -117,11 +119,11 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/answer.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/comparition.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/FQA_net.jpg">
-<meta property="og:updated_time" content="2019-02-24T12:39:14.142Z">
+<meta property="og:updated_time" content="2019-03-02T03:27:46.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器阅读理解(MRC) 和 SQuAD">
-<meta name="twitter:description" content="1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
+<meta name="twitter:description" content="本文仅供作者复习使用，大量参考了Danqi Chen的博士论文  1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MCTest.png">
 
 
 
@@ -373,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.9k
+                  2.6k
                 </span>
               
 
@@ -389,7 +391,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  7
+                  10
                 </span>
               
             </div>
@@ -410,9 +412,37 @@
       
 
       
-        <h1 id="1-阅读理解"><a href="#1-阅读理解" class="headerlink" title="1.阅读理解"></a>1.阅读理解</h1><h2 id="1-1-什么是RC"><a href="#1-1-什么是RC" class="headerlink" title="1.1 什么是RC?"></a>1.1 什么是RC?</h2><p>​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。</p>
+        <font size="5"><center>本文仅供作者复习使用，大量参考了Danqi Chen的<a href="https://cs.stanford.edu/~danqi/papers/thesis.pdf" target="_blank" rel="noopener">博士论文</a></center></font>
+
+<h1 id="1-阅读理解"><a href="#1-阅读理解" class="headerlink" title="1.阅读理解"></a>1.阅读理解</h1><h2 id="1-1-什么是RC"><a href="#1-1-什么是RC" class="headerlink" title="1.1 什么是RC?"></a>1.1 什么是RC?</h2><p>​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。</p>
 <a id="more"></a>
-<h2 id="1-2-阅读理解问题的分类"><a href="#1-2-阅读理解问题的分类" class="headerlink" title="1.2 阅读理解问题的分类"></a>1.2 阅读理解问题的分类</h2><h3 id="1-2-1-Cloze-style-完形填空式"><a href="#1-2-1-Cloze-style-完形填空式" class="headerlink" title="1.2.1 Cloze-style(完形填空式)"></a>1.2.1 Cloze-style(完形填空式)</h3><font size="5"><center> <a href="https://research.fb.com/downloads/babi/" target="_blank" rel="noopener"><strong>CBT数据集</strong></a> </center></font>
+<h2 id="1-2-为什么是RC"><a href="#1-2-为什么是RC" class="headerlink" title="1.2 为什么是RC?"></a>1.2 为什么是RC?</h2><p>​    教机器去理解人类语言是一个很难的事情，那我们为什么会选择去做阅读理解任务?</p>
+<p><img src="MCTest.png" alt></p>
+<center>图1: 来自MCTest数据集的一个例子</center>
+
+<p>​    其实，NLP社区为了解决语言理解问题已经设计并考虑了很多任务:</p>
+<ul>
+<li><strong>词性标注</strong>:如<em>Alyssa got to the beach after a long trip</em>, Alyssa是专有名词, got是过去式动词, long是形容词, after是介词等等.</li>
+<li><strong>命名实体识别</strong>: 需要知道例如<em>Alyssa, Ellen, Kristen</em>是人名; <em>Charlotte, Atlanta and Miami</em>是地名等等.</li>
+<li><strong>句法分析</strong>: <em>Alyssa got to the beach after a long trip</em> 中<em>Alyssa</em>是主语, <em>beach</em>是go的目标, <em>after a long trip</em>是修饰动词的介词短语等等.</li>
+<li><strong>指代消解</strong>: 需要去理解<em>She</em>,<em>he</em>一类词的指代对象.</li>
+</ul>
+<p>​    然后人们发现,阅读理解,阅读文章并回答问题,能够有效的考察这些方面考察机器对人类语言的理解.</p>
+<p>​        (a) 第一个问题<em>What city is Alyssa in?</em> ,机器需挑出<em>She’s now in Miami</em>并知道She指的是<em>Alyssa</em>.</p>
+<p>​        (b) 第二个问题<em>What did Alyssa eat at the restaurant?</em>  机器需要挑出<em>The restaurant had a special on catfish.</em> 和 <em>Alyssa enjoyed the restaurant’s special</em>这两个句子并且知道<em>special</em>指的是<em>catfish</em>.</p>
+<p>​        (c) 第三个问题<em>How many friends does Alyssa have in this story?</em> 就更有挑战性,机器需要追踪文中所有的人名并分析它们的关系,需要很强的理解推理能力.</p>
+<p>​    所以, 阅读理解任务可能是最适合评估机器对文本理解能力的任务.</p>
+<p>​    并且,阅读理解在人类的生活,实际应用中能起到很大的作用.</p>
+<p><img src="google_search.png" alt></p>
+<center>图2: 使用Google搜索答案的同时,google在返回网页的同时给出了更精准的答案</center>
+
+<p>​    例如使用搜索引擎搜索问题时, 利用阅读理解技术,我们可以直接返回给用户答案而不仅是检索出来的网页.而且,现在常用的语言助手例如Amazon的Alexa, Apple的siri等语音助手, 人们也经常使用他们来问一些常识性的或者信息类的问题, 而阅读理解技术无疑于是对话和问答中的关键. </p>
+<p>​    结合阅读理解技术为关键发展出来的应用存在以下两大类:</p>
+<ul>
+<li><strong>开放领域问答</strong>: 结合信息检索技术和阅读理解技术来回答一些通识性问题.</li>
+<li><strong>对话式问答</strong>: 结合对话领域和问答领域的挑战, 把一轮的问答转变为关于一段文本的对话式问题. </li>
+</ul>
+<h2 id="1-2-阅读理解问题的分类"><a href="#1-2-阅读理解问题的分类" class="headerlink" title="1.2 阅读理解问题的分类"></a>1.2 阅读理解问题的分类</h2><h3 id="1-2-1-Cloze-style-完形填空式"><a href="#1-2-1-Cloze-style-完形填空式" class="headerlink" title="1.2.1 Cloze-style(完形填空式)"></a>1.2.1 Cloze-style(完形填空式)</h3><font size="5"><center> <a href="https://research.fb.com/downloads/babi/" target="_blank" rel="noopener">CBT数据集</a> </center></font>
 
 <p>​    CBT数据集全称是Children’s Book Test，数据集是facebook从儿童读物中自动生成的，每21句话构成一个example，前20句是用于阅读的上下文，第21句会被抽走一个单词，机器要从给定的十个词中去预测哪个词才是被抽走的词，根据被抽走的词可以将问题分成四类：命名实体、名词、动词和介词。</p>
 <p>​    更详细的关于数据集的介绍请查看下面一篇论文:    </p>
@@ -528,8 +558,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/23/pythonLearning/" rel="next" title="pythonLearning">
-                <i class="fa fa-chevron-left"></i> pythonLearning
+              <a href="/2018/09/23/pythonLearning/" rel="next" title="Python基础知识整理(from 廖雪峰)">
+                <i class="fa fa-chevron-left"></i> Python基础知识整理(from 廖雪峰)
               </a>
             
           </div>
@@ -668,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-阅读理解问题的分类"><span class="nav-text">1.2 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-SQuAD-2-0"><span class="nav-text">2.2 SQuAD 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Pipeline"><span class="nav-text">2.3 Pipeline</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为什么是RC"><span class="nav-text">1.2 为什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-阅读理解问题的分类"><span class="nav-text">1.2 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-SQuAD-2-0"><span class="nav-text">2.2 SQuAD 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Pipeline"><span class="nav-text">2.3 Pipeline</span></a></li></ol></li></ol></div>
             
 
           </div>
