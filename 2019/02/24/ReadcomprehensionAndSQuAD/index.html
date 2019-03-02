@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/answer.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/comparition.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/FQA_net.jpg">
-<meta property="og:updated_time" content="2019-03-02T03:27:46.576Z">
+<meta property="og:updated_time" content="2019-03-02T03:42:20.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器阅读理解(MRC) 和 SQuAD">
 <meta name="twitter:description" content="本文仅供作者复习使用，大量参考了Danqi Chen的博士论文  1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
@@ -416,28 +416,28 @@
 
 <h1 id="1-阅读理解"><a href="#1-阅读理解" class="headerlink" title="1.阅读理解"></a>1.阅读理解</h1><h2 id="1-1-什么是RC"><a href="#1-1-什么是RC" class="headerlink" title="1.1 什么是RC?"></a>1.1 什么是RC?</h2><p>​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。</p>
 <a id="more"></a>
-<h2 id="1-2-为什么是RC"><a href="#1-2-为什么是RC" class="headerlink" title="1.2 为什么是RC?"></a>1.2 为什么是RC?</h2><p>​    教机器去理解人类语言是一个很难的事情，那我们为什么会选择去做阅读理解任务?</p>
+<h2 id="1-2-为什么是RC"><a href="#1-2-为什么是RC" class="headerlink" title="1.2 为什么是RC?"></a>1.2 为什么是RC?</h2><p>教机器去理解人类语言是一个很难的事情，那我们为什么会选择去做阅读理解任务?</p>
 <p><img src="MCTest.png" alt></p>
 <center>图1: 来自MCTest数据集的一个例子</center>
 
-<p>​    其实，NLP社区为了解决语言理解问题已经设计并考虑了很多任务:</p>
+<p>其实，NLP社区为了解决语言理解问题已经设计并考虑了很多任务:</p>
 <ul>
 <li><strong>词性标注</strong>:如<em>Alyssa got to the beach after a long trip</em>, Alyssa是专有名词, got是过去式动词, long是形容词, after是介词等等.</li>
 <li><strong>命名实体识别</strong>: 需要知道例如<em>Alyssa, Ellen, Kristen</em>是人名; <em>Charlotte, Atlanta and Miami</em>是地名等等.</li>
 <li><strong>句法分析</strong>: <em>Alyssa got to the beach after a long trip</em> 中<em>Alyssa</em>是主语, <em>beach</em>是go的目标, <em>after a long trip</em>是修饰动词的介词短语等等.</li>
 <li><strong>指代消解</strong>: 需要去理解<em>She</em>,<em>he</em>一类词的指代对象.</li>
 </ul>
-<p>​    然后人们发现,阅读理解,阅读文章并回答问题,能够有效的考察这些方面考察机器对人类语言的理解.</p>
-<p>​        (a) 第一个问题<em>What city is Alyssa in?</em> ,机器需挑出<em>She’s now in Miami</em>并知道She指的是<em>Alyssa</em>.</p>
-<p>​        (b) 第二个问题<em>What did Alyssa eat at the restaurant?</em>  机器需要挑出<em>The restaurant had a special on catfish.</em> 和 <em>Alyssa enjoyed the restaurant’s special</em>这两个句子并且知道<em>special</em>指的是<em>catfish</em>.</p>
-<p>​        (c) 第三个问题<em>How many friends does Alyssa have in this story?</em> 就更有挑战性,机器需要追踪文中所有的人名并分析它们的关系,需要很强的理解推理能力.</p>
-<p>​    所以, 阅读理解任务可能是最适合评估机器对文本理解能力的任务.</p>
-<p>​    并且,阅读理解在人类的生活,实际应用中能起到很大的作用.</p>
+<p>然后人们发现,阅读理解,阅读文章并回答问题,能够有效的考察这些方面考察机器对人类语言的理解.</p>
+<p>​    <strong>(a)</strong> 第一个问题<em>What city is Alyssa in?</em> ,机器需挑出<em>She’s now in Miami</em>并知道She指的是<em>Alyssa</em></p>
+<p>​    <strong>(b)</strong> 第二个问题<em>What did Alyssa eat at the restaurant?</em>  机器需要挑出<em>The restaurant had a special on catfish.</em> 和 <em>Alyssa enjoyed the restaurant’s special</em>这两个句子并且知道<em>special</em>指的是<em>catfish</em>.</p>
+<p>​    <strong>(c)</strong> 第三个问题<em>How many friends does Alyssa have in this story?</em> 就更有挑战性,机器需要追踪文中所有的人名并分析它们的关系,需要很强的理解推理能力.</p>
+<p>所以, 阅读理解任务可能是最适合评估机器对文本理解能力的任务.</p>
+<p>并且,阅读理解在人类的生活,实际应用中能起到很大的作用.</p>
 <p><img src="google_search.png" alt></p>
 <center>图2: 使用Google搜索答案的同时,google在返回网页的同时给出了更精准的答案</center>
 
 <p>​    例如使用搜索引擎搜索问题时, 利用阅读理解技术,我们可以直接返回给用户答案而不仅是检索出来的网页.而且,现在常用的语言助手例如Amazon的Alexa, Apple的siri等语音助手, 人们也经常使用他们来问一些常识性的或者信息类的问题, 而阅读理解技术无疑于是对话和问答中的关键. </p>
-<p>​    结合阅读理解技术为关键发展出来的应用存在以下两大类:</p>
+<p>结合阅读理解技术为关键发展出来的应用存在以下两大类:</p>
 <ul>
 <li><strong>开放领域问答</strong>: 结合信息检索技术和阅读理解技术来回答一些通识性问题.</li>
 <li><strong>对话式问答</strong>: 结合对话领域和问答领域的挑战, 把一轮的问答转变为关于一段文本的对话式问题. </li>
