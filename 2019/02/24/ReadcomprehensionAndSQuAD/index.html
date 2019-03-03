@@ -114,12 +114,13 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_example.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/SQuAD_leaderboard.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/MARCO_leaderboard.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/timeline.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/interface.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/reasoning.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/answer.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/comparition.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/ReadcomprehensionAndSQuAD/FQA_net.jpg">
-<meta property="og:updated_time" content="2019-03-03T06:12:34.446Z">
+<meta property="og:updated_time" content="2019-03-03T06:36:11.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器阅读理解(MRC) 和 SQuAD">
 <meta name="twitter:description" content="本文仅供作者复习使用，大量参考了Danqi Chen的博士论文  1.阅读理解1.1 什么是RC?​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。">
@@ -375,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3k
+                  3.2k
                 </span>
               
 
@@ -416,7 +417,7 @@
 
 <h1 id="1-阅读理解"><a href="#1-阅读理解" class="headerlink" title="1.阅读理解"></a>1.阅读理解</h1><h2 id="1-1-什么是RC"><a href="#1-1-什么是RC" class="headerlink" title="1.1 什么是RC?"></a>1.1 什么是RC?</h2><p>​    阅读理解是近两年自然语言处理领域的研究热点之一，受到学术界和工业界的广泛关注。而阅读理解，即指让机器阅读文本，然后根据文本回答问题，对机器的文本理解能力、推理能力还有关于世界的外部认知都有一定的要求。</p>
 <a id="more"></a>
-<h2 id="1-3-为什么是RC"><a href="#1-3-为什么是RC" class="headerlink" title="1.3 为什么是RC?"></a>1.3 为什么是RC?</h2><p>教机器去理解人类语言是一个很难的事情，那我们为什么会选择去做阅读理解任务?</p>
+<h2 id="1-2-为什么是RC"><a href="#1-2-为什么是RC" class="headerlink" title="1.2 为什么是RC?"></a>1.2 为什么是RC?</h2><p>教机器去理解人类语言是一个很难的事情，那我们为什么会选择去做阅读理解任务?</p>
 <p><img src="MCTest.png" alt></p>
 <center>图1: 来自MCTest数据集的一个例子</center>
 
@@ -487,7 +488,7 @@
 <li><strong>Exact match(EM)</strong>: predicted answer和ground truth之间是否相等</li>
 <li><strong>F1 score</strong>: 计算predicted answer和ground truth之间的单词重叠, 有多个答案时计算最大的答案的F1 score再进行平均</li>
 </ul>
-<p>$F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}$</p>
+<p>$ F1 = \frac{2 \times Precision \times Recall}{Precision + Recall} $</p>
 <h3 id="1-2-4-综合式"><a href="#1-2-4-综合式" class="headerlink" title="1.2.4 综合式"></a>1.2.4 综合式</h3><font size="5"><center><a href="http://www.msmarco.org/leaders.aspx" target="_blank" rel="noopener">MS MARCO</a></center></font>
 
 <p>​    MARCO 数据集中的问题全都基于来自微软必应搜索（BING）引擎和微软小娜人工智能助手（Cortana）的已匿名处理的真实查询。此外，相关回答是由真人参考真实网页编写的，并对其准确性进行了验证。而在每一个问题中，MARCO 提供多篇来自搜索结果的网页文档，系统需要根据这些文档来回答给定的问题。就像人类在搜索引擎给定的结果中自行筛选信息一样，这些文档中是否有对应的答案、在哪一篇文章中，都需要系统自行判断，甚至还需要结合多篇文章做出提炼与总结，而这也对机器的阅读理解能力提出了更高的要求。</p>
@@ -497,6 +498,19 @@
 <font size="4"><center><strong>评价指标</strong></center></font>
 
 <p>没有一个consensus的评价指标, 用natural language generation (NLG) 的指标例如<strong>BLEU</strong>, <strong>Meteor</strong>等代替</p>
+<h2 id="1-4-发展历程"><a href="#1-4-发展历程" class="headerlink" title="1.4 发展历程"></a>1.4 发展历程</h2><p><img src="timeline.png" alt></p>
+<center>图6: 阅读理解领域重要进展时间线, 蓝色是模型, 黑色是数据集</center>
+
+<p>最近阅读理解领域的巨大成功主要归功于两点:</p>
+<ul>
+<li>更大规模更高质量数据集的提出</li>
+<li>神经网络阅读理解模型的发展</li>
+</ul>
+<p>神经网络阅读理解模型相比传统的rule-based模型的优点:</p>
+<ul>
+<li>神经网络阅读理解模型不依赖于下游的语言学系统或工具例如dependency分析器emantic role labling(语义角色标注)系统等, 这些工具往往有很多不完善的地方并且存在泛化性差等问题,提取出来的特征噪声也会很大.</li>
+<li>神经网络模型自动学习所有的特征, 而这些特征也很难被手动有效的设计出来, 人们也可以把更多的精力放在设计网络结构上</li>
+</ul>
 <h1 id="2-SQuAD"><a href="#2-SQuAD" class="headerlink" title="2. SQuAD"></a>2. SQuAD</h1><h2 id="2-1-数据集特点"><a href="#2-1-数据集特点" class="headerlink" title="2.1 数据集特点"></a>2.1 数据集特点</h2><p>​    前文提到过了SQuAD的数据集格式和影响力，下面主要介绍一些数据集的细节和特点。</p>
 <ul>
 <li>问题(query)的复杂性</li>
@@ -717,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-为什么是RC"><span class="nav-text">1.3 为什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-阅读理解问题的分类"><span class="nav-text">1.3 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-SQuAD-2-0"><span class="nav-text">2.2 SQuAD 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Pipeline"><span class="nav-text">2.3 Pipeline</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-阅读理解"><span class="nav-text">1.阅读理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是RC"><span class="nav-text">1.1 什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-为什么是RC"><span class="nav-text">1.2 为什么是RC?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-阅读理解问题的分类"><span class="nav-text">1.3 阅读理解问题的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Cloze-style-完形填空式"><span class="nav-text">1.2.1 Cloze-style(完形填空式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-多选式"><span class="nav-text">1.2.2 多选式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-抽取式"><span class="nav-text">1.2.3 抽取式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-综合式"><span class="nav-text">1.2.4 综合式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-发展历程"><span class="nav-text">1.4 发展历程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SQuAD"><span class="nav-text">2. SQuAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-数据集特点"><span class="nav-text">2.1 数据集特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-SQuAD-2-0"><span class="nav-text">2.2 SQuAD 2.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Pipeline"><span class="nav-text">2.3 Pipeline</span></a></li></ol></li></ol></div>
             
 
           </div>
