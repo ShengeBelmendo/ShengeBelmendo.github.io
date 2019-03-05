@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="nlp,QA,MRC,deep_learning,">
+  <meta name="keywords" content="nlp,MRC,Match-LSTM,Deep learning,SQuAD,">
 
 
 
@@ -101,18 +101,18 @@
 
 
 
-<meta name="description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
-<meta name="keywords" content="nlp,MRC,BiDAF,QANet,R-Net">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="原文请看Shuohang Wang,Jing Jiang. [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).  1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol">
+<meta name="keywords" content="nlp,MRC,Match-LSTM,Deep learning,SQuAD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文分享---Match_LSTM">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/thesis-Match-LSTM/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta property="og:description" content="原文请看Shuohang Wang,Jing Jiang. [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).  1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-24T02:57:19.640Z">
+<meta property="og:updated_time" content="2019-03-05T03:19:42.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta name="twitter:title" content="论文分享---Match_LSTM">
+<meta name="twitter:description" content="原文请看Shuohang Wang,Jing Jiang. [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).  1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol">
 
 
 
@@ -141,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/thesis-Match-LSTM/">
 
 
 
 
 
-  <title>tags | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>论文分享---Match_LSTM | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -268,40 +268,220 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/thesis-Match-LSTM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="北冥有深">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/xiongmao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shenge's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 6 个标签
+          <h1 class="post-title" itemprop="name headline">论文分享---Match_LSTM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T10:21:13+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MRC/" itemprop="url" rel="index">
+                    <span itemprop="name">MRC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  143
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Deep-learning/" style="font-size: 30px; color: #111">Deep learning</a> <a href="/tags/MRC/" style="font-size: 30px; color: #111">MRC</a> <a href="/tags/Match-LSTM/" style="font-size: 12px; color: #ccc">Match-LSTM</a> <a href="/tags/SQuAD/" style="font-size: 30px; color: #111">SQuAD</a> <a href="/tags/nlp/" style="font-size: 30px; color: #111">nlp</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <font size="5"><center>原文请看Shuohang Wang,Jing Jiang. [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).</center></font>
+
+<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1. 背景介绍"></a>1. 背景介绍</h1><p>Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和<em>Oriol Vinyals, Meire Fortunato, Navdeep Jaitly</em>等人在<em>Pointer Networks</em>里提出的Pointer Net, 作者在本文中提出了两种利用Pointer Net预测答案的模式, 而Boundary Model后续也成为预测答案的经典选择.</p>
+<h1 id="2-亮点"><a href="#2-亮点" class="headerlink" title="2. 亮点"></a>2. 亮点</h1><p>把match_lstm和pointer net应用在了SQuAD上,并提出了Boundary Model这种预测答案的模式.</p>
+<h1 id="3-模型介绍"><a href="#3-模型介绍" class="headerlink" title="3. 模型介绍"></a>3. 模型介绍</h1>
       
     </div>
     
     
     
+
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+    
+  </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+            <a href="/tags/MRC/" rel="tag"># MRC</a>
+          
+            <a href="/tags/Match-LSTM/" rel="tag"># Match-LSTM</a>
+          
+            <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+          
+            <a href="/tags/SQuAD/" rel="tag"># SQuAD</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/24/ReadcomprehensionAndSQuAD/" rel="next" title="机器阅读理解(MRC) 和 SQuAD">
+                <i class="fa fa-chevron-left"></i> 机器阅读理解(MRC) 和 SQuAD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -334,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/xiongmao.jpeg" alt="北冥有深">
           <p class="site-author-name" itemprop="name">北冥有深</p>
@@ -395,6 +584,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1. 背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2. 亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型介绍"><span class="nav-text">3. 模型介绍</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -527,10 +732,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
