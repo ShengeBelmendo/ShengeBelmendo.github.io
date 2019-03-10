@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="nlp,MRC,BiDAF,Deep learning,SQuAD,">
+  <meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,R-Net,">
 
 
 
@@ -101,21 +101,26 @@
 
 
 
-<meta name="description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
-<meta name="keywords" content="nlp,MRC,BiDAF,Deep learning,SQuAD">
+<meta name="description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
+<meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,R-Net">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文分享----BiDAF">
-<meta property="og:url" content="http://yoursite.com/2019/03/05/BiDAF/index.html">
+<meta property="og:title" content="论文分享----R-Net">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/thesis-R-Net/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
+<meta property="og:description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/03/05/BiDAF/model.png">
-<meta property="og:image" content="http://yoursite.com/2019/03/05/BiDAF/TextCNN.png">
-<meta property="og:updated_time" content="2019-03-05T13:58:43.116Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/model.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula10.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula11.png">
+<meta property="og:updated_time" content="2019-03-10T10:46:02.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="论文分享----BiDAF">
-<meta name="twitter:description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/05/BiDAF/model.png">
+<meta name="twitter:title" content="论文分享----R-Net">
+<meta name="twitter:description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/model.png">
 
 
 
@@ -144,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/05/BiDAF/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/10/thesis-R-Net/">
 
 
 
 
 
-  <title>论文分享----BiDAF | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>论文分享----R-Net | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -283,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/BiDAF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/thesis-R-Net/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="北冥有深">
@@ -300,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">论文分享----BiDAF</h1>
+          <h1 class="post-title" itemprop="name headline">论文分享----R-Net</h1>
         
 
         <div class="post-meta">
@@ -312,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T16:46:38+08:00">
-                2019-03-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-10T15:04:31+08:00">
+                2019-03-10
               </time>
             
 
@@ -367,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  888
+                  567
                 </span>
               
 
@@ -383,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  2
                 </span>
               
             </div>
@@ -404,59 +409,50 @@
       
 
       
-        <font size="5"><center>原文请看 <a href="https://arxiv.org/abs/1611.01603" target="_blank" rel="noopener">Bidirectional Attention Flow for Machine Comprehension</a>.</center></font>
+        <font size="5"><center>原文请看 <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf" target="_blank" rel="noopener">R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS</a>.</center></font>
 
 <p><br><br></p>
-<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h1><p>BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to-query和query-to-context来获得query-aware的上下文表示.</p>
+<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h1><p>R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query-aware的passage，接着使用self-attention来重新搜寻信息，最后使用类似Match-LSTM中利用pointer-network来生成答案。</p>
 <a id="more"></a>
 <p><br><br></p>
-<h1 id="2-亮点"><a href="#2-亮点" class="headerlink" title="2. 亮点"></a>2. 亮点</h1><p>BiDAF的创新点主要在于对attention机制进行了改进, 主要是提出了双向注意力机制, 据作者说则有以下几点改良:</p>
+<h1 id="2-亮点"><a href="#2-亮点" class="headerlink" title="2.亮点"></a>2.亮点</h1><p>R-Net的网络结构改动主要有以下两点：</p>
 <ul>
-<li>注意力不仅仅用于提取相关信息的model层,还会一直flow到后面的model层和output层, 减少了过早提取信息造成的损失.</li>
-<li>使用了memory-less的attention机制,即没有使用lstm的t-1时刻的隐藏状态来计算t时刻的注意力, 而仅仅是通过passage和query的表征向量来计算注意力.</li>
-<li>使用了双向的注意力机制, 即 context-to-query和query-to-context的注意力.</li>
+<li>在attention-based的RNN基础上增加了一层额外的gate，用来区分passage中的哪些部分对回答问题更重要，哪些部分更无关。</li>
+<li>增加了self-matching机制，利用self-matching有效的在passage中检索信息。</li>
 </ul>
 <p><br><br></p>
 <h1 id="3-模型细节"><a href="#3-模型细节" class="headerlink" title="3.模型细节"></a>3.模型细节</h1><p><img src="model.png" alt></p>
-<center>图1: BiDAF模型的具体架构</center>
+<center>图1: R-Net模型的具体架构</center>
 
-<p><strong>Character Embedding Layer</strong></p>
-<p><img src="TextCNN.png" alt></p>
-<p>$x_{i:i+j}$ 表示字母$x_i,x_{i+1},…,x_{i+j}%+$的拼接, $x_i \in R^k$ , 假设有卷积核$W \in R^{h \times k}$ , 特征$c_i$从字母$x_{i:i+h-1}$ 中提取而来</p>
-<p>$$c_i = f(w \centerdot x_{i:i+h-1} + b )​$$</p>
-<p>把卷积核应用到所有位置上得到feature map c</p>
-<p>$$c = [c_1,c_2,…,c_{n-h+1}],c \in R^{n-h+1}$$</p>
-<p>应用max pooling则得到 $\widehat c = max(c)$, 每个卷积核一个特征值,100个卷积核即100维的Character-lever word representation.</p>
+<p><strong>Character/Word Embedding</strong></p>
+<p>对passage和question都进行character-level和word-level的embedding，character-level的embedding使用1层GRU编码的最后一个隐藏层状态作为单词的character-level的表示，word-level的单词表示使用Glove作为预训练向量，将character-level和word-lev的表示拼接起来送到3层的双向GRU进行编码，编码后的输出作为contextual 的word representation。</p>
 <p><br><br></p>
-<p><strong>Word Embedding Layer</strong></p>
-<p>word的embedding使用Glove作为预训练的词向量,然后将character-level和word-lever的embedding拼接后送入<em>Highway Network</em>,分别得到context和query的向量化表示.</p>
+<p><strong>Gated attention-based RNNs</strong></p>
+<p>该层RNN的计算公式如下:</p>
+<p>$$v^p_t = RNN(v^P_{t-1},[u^P_t,c_t])​$$</p>
+<p>$u_t^p$是上一层编码后的passage向量，$c_t$是由query向量经attention-pooling后的向量</p>
+<p>注意力$c_t​$的计算没什么特别:</p>
+<p><img src="formula4.png" alt></p>
+<p>所谓gate即:</p>
+<p><img src="formula6.png" alt></p>
+<p>gate的计算依赖于当前时刻的passage向量和经attention-pooling后的query向量，专注于提取这两者之间的关系。</p>
 <p><br><br></p>
-<p><strong>Contextual Embedding Layer</strong></p>
-<p>将上层网络的输入送入到双向LSTM中进行包含上下文相关信息的编码,得到context的表示$H \in R^{2d \times T}$ 和query的表示$U \in R^{2d \times J}$.</p>
+<p><strong>Self-Matching Attention</strong></p>
+<p>self-attention被用来更专注于提取context的相关信息。该层RNN的计算公式如下:</p>
+<p>$$h^p_t = RNN(h^P_{t-1},[v^P_t,c_t])$$</p>
+<p>而$c_t$是对$v^P$的attention-pooling的向量:</p>
+<p><img src="formula8.png" alt></p>
+<p>和上一层一样，这一层也额外给输入加了一层gate。</p>
 <p><br><br></p>
-<p><strong>Attention Flow Layer</strong></p>
-<p>BiDAF的attention计算不依赖于lstm网络的隐藏层状态,单单利用context和query的表征向量加上一个相似度函数来计算.</p>
-<p>相似度矩阵$S \in R^{T \times J}$, $S_{tj}$是第t个context中token和第j个query中token的相似度:</p>
-<p>$$S_{tj} = \alpha (H_{:t},U_{:j}) \in R$$ </p>
-<p>$\alpha$ 是相似度函数, $\alpha(h,u) = W^T_{(s)}[h;u;h \circ u]$</p>
-<p><strong>Context-to-query Attention</strong> </p>
-<p>$S_{t:}$ 即第t个context的token和所有query中token的相似度,经过softmax函数后得到$a_t$ , $a_t = softmax(S_{t:}) \in R^J$和对query加权后,即可得到attended query vectors即$\widetilde{U}_{:t} = \sum_ja_{tj}U_{;j}$</p>
-<p><strong>Query-to-context Attention</strong></p>
-<p>在S矩阵中每一行取最大值,即代表query对这一行所代表的context的token的关注程度, $b = softmax(max_{col}(S)) \in R^T$, 根据关注程度对context加权$\widetilde{h} = \sum_tb_tH_{:t} \in R^{2d}$,加权后重复T词次,得到attended context vertors $\widetilde{H} \in R^{2d \times T}$</p>
-<p>最后输出$G$ 矩阵</p>
-<p>$$G_{:t} = \beta(H_{:t}, \widetilde U_{:t},\widetilde H_{:t}) \in R^{dG}$$</p>
-<p>$G_{:t}$是对应第t个context word的向量, $\beta$ 可以是任意的神经网络,也可以是一些简单的点乘拼接运算.</p>
-<p>作者使用$\beta(h,\widetilde u,\widetilde h) = [h;\widetilde u;h \circ \widetilde u;h \circ \widetilde h] \in R^{8d \times T}$</p>
-<p><br><br></p>
-<p><strong>Model Layer</strong></p>
-<p>Model layer 输入是G, 基于注意力去获得query-aware的context的representation, 输出$M \in R^{2d \times T}$</p>
-<p><br><br></p>
-<p><strong>Output Layer</strong></p>
-<p>预测开始位置和结束位置的概率.</p>
-<p>$$p^1 = softmax(W^T_{(p^1)}[G;M])$$</p>
-<p>$$p^2 = softmax(W^T_{(p^2)}[G;M^2])$$</p>
-<p>$M^2$是把M矩阵传入到另一个lstm网络里得到的.</p>
-<p>loss使用负对数去最大化初始位置和结束位置的预测概率.</p>
+<p><strong>Output layer</strong></p>
+<p>output layer 和 Match-lstm类似，使用pointer network来作为答案。</p>
+<p>pointer network对位置的预测使用attention方法得到概率分布:</p>
+<p><img src="formula9.png" alt></p>
+<p>$h_{t-1}^a$是pointer的RNN的上个时刻的隐藏层状态，该RNN的计算公式如下:</p>
+<p><img src="formula10.png" alt></p>
+<p>而预测开始位置时，初始隐藏层状态使用attention-pooling的query向量$r^Q = att(u^Q,V^Q_r)$进行初始化:</p>
+<p><img src="formula11.png" alt></p>
+<p>训练时最小化开始位置和结束位置的负对数概率。</p>
 
       
     </div>
@@ -489,11 +485,11 @@
           
             <a href="/tags/MRC/" rel="tag"># MRC</a>
           
-            <a href="/tags/BiDAF/" rel="tag"># BiDAF</a>
-          
             <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
           
             <a href="/tags/SQuAD/" rel="tag"># SQuAD</a>
+          
+            <a href="/tags/R-Net/" rel="tag"># R-Net</a>
           
         </div>
       
@@ -506,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/05/thesis-Match-LSTM/" rel="next" title="论文分享---Match_LSTM">
-                <i class="fa fa-chevron-left"></i> 论文分享---Match_LSTM
+              <a href="/2019/03/05/BiDAF/" rel="next" title="论文分享----BiDAF">
+                <i class="fa fa-chevron-left"></i> 论文分享----BiDAF
               </a>
             
           </div>
@@ -515,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/thesis-R-Net/" rel="prev" title="论文分享----R-Net">
-                论文分享----R-Net <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2. 亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型细节"><span class="nav-text">3.模型细节</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2.亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型细节"><span class="nav-text">3.模型细节</span></a></li></ol></div>
             
 
           </div>
