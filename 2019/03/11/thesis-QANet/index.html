@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="nlp,QA,MRC,deep_learning,">
+  <meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,QANet,">
 
 
 
@@ -101,17 +101,18 @@
 
 
 
-<meta name="description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
-<meta name="keywords" content="nlp,MRC,BiDAF,QANet,R-Net">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shenge&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/02/index.html">
+<meta name="description" content="原文请看 QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION.   1. 背景介绍QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到">
+<meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,QANet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thesis-QANet">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/thesis-QANet/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta property="og:description" content="原文请看 QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION.   1. 背景介绍QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-21T08:29:07.494Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shenge&#39;s Blog">
-<meta name="twitter:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta name="twitter:title" content="thesis-QANet">
+<meta name="twitter:description" content="原文请看 QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION.   1. 背景介绍QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到">
 
 
 
@@ -140,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/02/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/thesis-QANet/">
 
 
 
 
 
-  <title>归档 | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>thesis-QANet | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -171,7 +172,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left  page-archive  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,72 +266,236 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 7 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2019">2019</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/thesis-QANet/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="北冥有深">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/xiongmao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shenge's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/02/24/ReadcomprehensionAndSQuAD/" itemprop="url">
-              
-                <span itemprop="name">机器阅读理解(MRC) 和 SQuAD</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">thesis-QANet</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-24T15:55:46+08:00" content="2019-02-24">
-          02-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T19:38:06+08:00">
+                2019-03-11
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MRC/" itemprop="url" rel="index">
+                    <span itemprop="name">MRC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  184
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <font size="5"><center>原文请看 <a href="https://arxiv.org/abs/1804.09541" target="_blank" rel="noopener">QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION</a>.</center></font>
+
+<p><br><br></p>
+<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1. 背景介绍"></a>1. 背景介绍</h1><p>QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到更大的数据集和快速迭代更新模型；推理慢导致了部署到对实习性要求高的系统出现困难。</p>
+<a id="more"></a>
+<p><br><br></p>
+<h1 id="2-亮点"><a href="#2-亮点" class="headerlink" title="2.亮点"></a>2.亮点</h1><ul>
+<li><p>使用CNN和self-attention代替了传统的RNN的编码模块，前馈特性大大提升了模型的训练和推理速度</p>
+</li>
+<li><p>提出了双向翻译进行数据增强的方法，这种方法较依赖于翻译器的质量。</p>
+</li>
+</ul>
+<p><br><br></p>
+<h1 id="3-模型"><a href="#3-模型" class="headerlink" title="3.模型"></a>3.模型</h1>
+      
     </div>
+    
+    
+    
+
+  <div>
+    
+      <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+
+    
+  </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+            <a href="/tags/MRC/" rel="tag"># MRC</a>
+          
+            <a href="/tags/Deep-learning/" rel="tag"># Deep learning</a>
+          
+            <a href="/tags/SQuAD/" rel="tag"># SQuAD</a>
+          
+            <a href="/tags/QANet/" rel="tag"># QANet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/10/thesis-R-Net/" rel="next" title="论文分享----R-Net">
+                <i class="fa fa-chevron-left"></i> 论文分享----R-Net
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/21/pytorch-DataParallel/" rel="prev" title="Pytorch单机多卡训练及一点小坑">
+                Pytorch单机多卡训练及一点小坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -338,6 +503,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -358,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/xiongmao.jpeg" alt="北冥有深">
           <p class="site-author-name" itemprop="name">北冥有深</p>
@@ -419,6 +597,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1. 背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2.亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型"><span class="nav-text">3.模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -551,11 +745,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
