@@ -109,10 +109,14 @@
 <meta property="og:site_name" content="Shenge&#39;s Blog">
 <meta property="og:description" content="原文请看 QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION.   1. 背景介绍QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T08:38:40.255Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/thesis-QANet/model.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/thesis-QANet/data_augmentation.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/11/thesis-QANet/speedup.png">
+<meta property="og:updated_time" content="2019-04-17T02:40:12.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文分享--QANet">
 <meta name="twitter:description" content="原文请看 QANET: COMBINING LOCAL CONVOLUTION WITH GLOBAL SELF-ATTENTION FOR READING COMPRE- HENSION.   1. 背景介绍QANet由CMU和Google brain联合提出，使用了CNN和self-attention来代替RNN进行编码，主要想要解决RNN的训练和推理速度都很慢的问题，训练很慢导致了很难应用到">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/11/thesis-QANet/model.png">
 
 
 
@@ -364,7 +368,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  184
+                  409
                 </span>
               
 
@@ -414,7 +418,22 @@
 </li>
 </ul>
 <p><br><br></p>
-<h1 id="3-模型"><a href="#3-模型" class="headerlink" title="3.模型"></a>3.模型</h1>
+<h1 id="3-模型"><a href="#3-模型" class="headerlink" title="3.模型"></a>3.模型</h1><p><img src="model.png" alt></p>
+<p>具体的结构如上图所示。</p>
+<p><strong>Input Embedding Layer</strong></p>
+<p>拼接word embedding和character embedding而成, word使用300维的Glove, character-level则使用CNN进行编码,两者拼接后通过highway network形成下一层的输入.</p>
+<p><br><br></p>
+<p><strong>Embedding Encoder Layer</strong></p>
+<p>这一层则是QANet的核心结构, 使用了类似transformer的结构,不同的是添加了卷积层,利用卷积捕捉短距离信息融合, 利用self-attention捕捉长距离信息融合,这里使用的卷积是depthwise separable的卷积.</p>
+<p><br><br></p>
+<p><strong>Context-Query Attention Layer</strong></p>
+<p>计算相似度矩阵, 对相似度归一化乘上context向量即得注意力值.</p>
+<p><br><br></p>
+<h1 id="4-其他"><a href="#4-其他" class="headerlink" title="4. 其他"></a>4. 其他</h1><h2 id="4-1-关于数据增强"><a href="#4-1-关于数据增强" class="headerlink" title="4.1 关于数据增强"></a>4.1 关于数据增强</h2><p><img src="data_augmentation.png" alt></p>
+<p>数据增强依靠双向翻译来完成,较依赖于翻译器质量.</p>
+<h2 id="4-2-关于加速效果"><a href="#4-2-关于加速效果" class="headerlink" title="4.2 关于加速效果"></a>4.2 关于加速效果</h2><p><img src="speedup.png" alt></p>
+<p>QANet 的主要贡献就在于提出更快的编码结构,其较BiDAF的加速效果如上图所示.</p>
+
       
     </div>
     
@@ -607,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1. 背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2.亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型"><span class="nav-text">3.模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1. 背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-亮点"><span class="nav-text">2.亮点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模型"><span class="nav-text">3.模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-其他"><span class="nav-text">4. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-关于数据增强"><span class="nav-text">4.1 关于数据增强</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-关于加速效果"><span class="nav-text">4.2 关于加速效果</span></a></li></ol></li></ol></div>
             
 
           </div>
