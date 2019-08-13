@@ -454,7 +454,7 @@
 <li><strong>对话式问答</strong>: 结合对话领域和问答领域的挑战, 把一轮的问答转变为关于一段文本的对话式问题. </li>
 </ul>
 <p>总而言之, 阅读理解的主要应用场景集中在机器对非结构化文本内容的阅读和理解上.</p>
-<h2 id="1-3-阅读理解问题的分类"><a href="#1-3-阅读理解问题的分类" class="headerlink" title="1.3 阅读理解问题的分类"></a>1.3 阅读理解问题的分类</h2><h3 id="1-3-1-Cloze-style-完形填空式"><a href="#1-3-1-Cloze-style-完形填空式" class="headerlink" title="1.3.1 Cloze-style(完形填空式)"></a>1.3.1 Cloze-style(完形填空式)</h3><p>​    <font size="5"><center>[CBT数据集](https://research.fb.com/downloads/babi/)</center></font></p>
+<h2 id="1-3-阅读理解问题的分类"><a href="#1-3-阅读理解问题的分类" class="headerlink" title="1.3 阅读理解问题的分类"></a>1.3 阅读理解问题的分类</h2><h3 id="1-3-1-Cloze-style-完形填空式"><a href="#1-3-1-Cloze-style-完形填空式" class="headerlink" title="1.3.1 Cloze-style(完形填空式)"></a>1.3.1 Cloze-style(完形填空式)</h3><p>​    <font size="5"><center><a href="https://research.fb.com/downloads/babi/" target="_blank" rel="noopener">CBT数据集</a></center></font></p>
 <p>​    CBT数据集全称是Children’s Book Test,数据集是facebook从儿童读物中自动生成的,每21句话构成一个example,前20句是用于阅读的上下文,第21句会被抽走一个单词,机器要从给定的十个词中去预测哪个词才是被抽走的词,根据被抽走的词可以将问题分成四类：命名实体、名词、动词和介词.</p>
 <p>​    更详细的关于数据集的介绍请查看下面一篇论文:    </p>
 <p>Felix Hill, Antoine Bordes, Sumit Chopra and Jason Weston. <a href="https://research.fb.com/publications/the-goldilocks-principle-reading-childrens-books-with-explicit-memory-representations/" target="_blank" rel="noopener">The Goldilocks Principle: Reading Children’s Books with Explicit Memory Representations</a>, arXiv:1511.02301.</p>
@@ -464,17 +464,17 @@
 <li>其他的还有如<a href="https://cs.nyu.edu/~kcho/DMQA/" target="_blank" rel="noopener">CNN/Daily Mail 数据集</a>,由DeepMind从真实的新闻数据中自动标注得到的,具体细节查看网页链接.</li>
 </ul>
 <h3 id="1-3-2-多选式"><a href="#1-3-2-多选式" class="headerlink" title="1.3.2 多选式"></a>1.3.2 多选式</h3><p>​    多选式阅读理解非常好理解,和我们中学做过的英语阅读一样,给一篇文章阅读,然后回答关于这篇文章的选择题.</p>
-<font size="5"><center>[MCTest](https://www.microsoft.com/en-us/research/publication/mctest-challenge-dataset-open-domain-machine-comprehension-text/)</center></font>
+<font size="5"><center><a href="https://www.microsoft.com/en-us/research/publication/mctest-challenge-dataset-open-domain-machine-comprehension-text/" target="_blank" rel="noopener">MCTest</a></center></font>
 
 <p>一个example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">James the Turtle was always getting in trouble.Sometimes he&apos;d reach into the freezer and empty out all the food. Other times he&apos;d sled on the deck and get a splinter. His aunt Jane tried as hard as she could to keep him out of trouble, but he was sneaky and got into lots of trouble behind her back.</span><br><span class="line">One day, James thought he would go into town and see what kind of trouble he could get into. He went to the grocery store and pulled all the pudding off the shelves and ate two jars. Then he walked to the fast food restaurant and ordered 15 bags of fries. He didn&apos;t pay, and instead headed home.</span><br><span class="line">His aunt was waiting for him in his room. She told James that she loved him, but he would have to start acting like a well-behaved turtle.</span><br><span class="line">After about a  month, and after getting into lots of trouble, James finally made up his mind to be a better turtle.</span><br><span class="line"></span><br><span class="line">1) What is the name of the trouble making turtle?</span><br><span class="line">A) Fries</span><br><span class="line">B) Pudding</span><br><span class="line">C) James</span><br><span class="line">D) Jane</span><br><span class="line">2) What did James pull off of the shelves in the grocery store?</span><br><span class="line">A) pudding</span><br><span class="line">B) fries</span><br><span class="line">C) food</span><br><span class="line">D) splinters</span><br><span class="line">3) Where did James go after he went to the grocery</span><br><span class="line">store?</span><br><span class="line">A) his deck</span><br><span class="line">B) his freezer</span><br><span class="line">C) a fast food restaurant</span><br><span class="line">D) his room</span><br><span class="line">4) What did James do after he ordered the fries?</span><br><span class="line">A) went to the grocery store</span><br><span class="line">B) went home without paying</span><br><span class="line">C) ate them</span><br><span class="line">D) made up his mind to be a better turtle</span><br></pre></td></tr></table></figure>
-<font size="5"><center>[RACE数据集](http://www.qizhexie.com/data/RACE_leaderboard)</center></font>
+<font size="5"><center><a href="http://www.qizhexie.com/data/RACE_leaderboard" target="_blank" rel="noopener">RACE数据集</a></center></font>
 
 <p>​    RACE数据集是从中学生和高中生的英语考试中的阅读理解题中而来的.</p>
 <p>​    详情请看以下论文:</p>
 <p>Guokun Lai, Qizhe Xie, Hanxiao Liu, Yiming Yang, Eduard Hovy.<a href="https://arxiv.org/abs/1704.04683" target="_blank" rel="noopener">RACE: Large-scale ReAding Comprehension Dataset From Examinations</a> arXiv:1704.04683</p>
 <h3 id="1-3-3-抽取式"><a href="#1-3-3-抽取式" class="headerlink" title="1.3.3 抽取式"></a>1.3.3 抽取式</h3><p>​    抽取式数据集,即给定一篇文章,给一个问题,答案则是从文章中抽取出来的一段连续的文字,可以是一个词也可以是多个词.</p>
-<font size="5"><center>[SQuAD](https://rajpurkar.github.io/SQuAD-explorer/)</center></font>
+<font size="5"><center><a href="https://rajpurkar.github.io/SQuAD-explorer/" target="_blank" rel="noopener">SQuAD</a></center></font>
 
 <p><img src="SQuAD_example.png" alt></p>
 <p>​    <center>图3 : 一个段落和对应的问题、答案</center></p>
@@ -487,22 +487,23 @@
 <p>​    稍后会详细介绍SQuAD数据集,以下是数据集的论文链接:</p>
 <p>SQuAD 1.0: <a href="https://arxiv.org/abs/1606.05250" target="_blank" rel="noopener">SQuAD: 100,000+ Questions for Machine Comprehension of Text</a></p>
 <p>SQuAD 2.0: <a href="https://arxiv.org/abs/1806.03822" target="_blank" rel="noopener">Know What You Don’t Know: Unanswerable Questions for SQuAD</a></p>
-<font size="4"><center>**评价指标**</center></font>
+<font size="4"><center><strong>评价指标</strong></center></font>
 
 <ul>
 <li><strong>Exact match(EM)</strong>: predicted answer和ground truth之间是否相等</li>
 <li><strong>F1 score</strong>: 计算predicted answer和ground truth之间的单词重叠, 有多个答案时计算最大的答案的F1 score再进行平均</li>
 </ul>
-<script type="math/tex; mode=display">F1 = \frac{2 \times Precision \times Recall}{Precision + Recall}</script><h3 id="1-3-4-综合式"><a href="#1-3-4-综合式" class="headerlink" title="1.3.4 综合式"></a>1.3.4 综合式</h3><font size="5"><center>[MS MARCO](http://www.msmarco.org/leaders.aspx)</center></font>
+<p>$$  F1 = \frac{2 \times Precision \times Recall}{Precision + Recall} $$</p>
+<h3 id="1-3-4-综合式"><a href="#1-3-4-综合式" class="headerlink" title="1.3.4 综合式"></a>1.3.4 综合式</h3><font size="5"><center><a href="http://www.msmarco.org/leaders.aspx" target="_blank" rel="noopener">MS MARCO</a></center></font>
 
 <p>​    MARCO 数据集中的问题全都基于来自微软必应搜索（BING）引擎和微软小娜人工智能助手（Cortana）的已匿名处理的真实查询.此外,相关回答是由真人参考真实网页编写的,并对其准确性进行了验证.而在每一个问题中,MARCO 提供多篇来自搜索结果的网页文档,系统需要根据这些文档来回答给定的问题.就像人类在搜索引擎给定的结果中自行筛选信息一样,这些文档中是否有对应的答案、在哪一篇文章中,都需要系统自行判断,甚至还需要结合多篇文章做出提炼与总结,而这也对机器的阅读理解能力提出了更高的要求.</p>
 <p><img src="MARCO_leaderboard.png" alt></p>
 <center>图5 : MS MARCO的leaderboard</center>
 
-<font size="4"><center>**评价指标**</center></font>
+<font size="4"><center><strong>评价指标</strong></center></font>
 
 <p>没有一个consensus的评价指标, 用natural language generation (NLG) 的指标例如<strong>BLEU</strong>, <strong>Meteor</strong>等代替</p>
-<h3 id="1-3-5-对话式"><a href="#1-3-5-对话式" class="headerlink" title="1.3.5 对话式"></a>1.3.5 对话式</h3><font size="5"><center>[CoQA](https://stanfordnlp.github.io/coqa/)</center></font>
+<h3 id="1-3-5-对话式"><a href="#1-3-5-对话式" class="headerlink" title="1.3.5 对话式"></a>1.3.5 对话式</h3><font size="5"><center><a href="https://stanfordnlp.github.io/coqa/" target="_blank" rel="noopener">CoQA</a></center></font>
 
 <p><img src="CoQA.png" alt></p>
 <center>图6 : 一个CoQA数据example的格式</center>
