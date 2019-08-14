@@ -101,19 +101,19 @@
 
 
 
-<meta name="description" content="原文请看 [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunat">
+<meta name="description" content="原文请看 MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER.   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunato, Navdeep Jaitly等人在Pointer Networks">
 <meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,Match-LSTM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文分享---Match-LSTM">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/thesis-Match-LSTM/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="原文请看 [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunat">
+<meta property="og:description" content="原文请看 MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER.   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunato, Navdeep Jaitly等人在Pointer Networks">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/05/thesis-Match-LSTM/match_lstm.png">
 <meta property="og:updated_time" content="2019-03-11T11:39:15.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文分享---Match-LSTM">
-<meta name="twitter:description" content="原文请看 [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunat">
+<meta name="twitter:description" content="原文请看 MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER.   1. 背景介绍Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和Oriol Vinyals, Meire Fortunato, Navdeep Jaitly等人在Pointer Networks">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/05/thesis-Match-LSTM/match_lstm.png">
 
 
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  838
+                  832
                 </span>
               
 
@@ -403,7 +403,7 @@
       
 
       
-        <font size="5"><center>原文请看 [MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER](https://arxiv.org/abs/1608.07905).</center></font>
+        <font size="5"><center>原文请看 <a href="https://arxiv.org/abs/1608.07905" target="_blank" rel="noopener">MACHINE COMPREHENSION USING MATCH-LSTM AND ANSWER POINTER</a>.</center></font>
 
 <p><br><br></p>
 <h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1. 背景介绍"></a>1. 背景介绍</h1><p>Match_LSTM是基于SQuAD数据集做的比较早的end-to-end模型,基于作者自己先前提出的match-LSTM和<em>Oriol Vinyals, Meire Fortunato, Navdeep Jaitly</em>等人在<em>Pointer Networks</em>里提出的Pointer Net, 作者在本文中提出了两种利用Pointer Net预测答案的模式, 而Boundary Model后续也成为预测答案的经典选择.</p>
@@ -418,21 +418,28 @@
 <h2 id="3-2-Pointer-Network"><a href="#3-2-Pointer-Network" class="headerlink" title="3.2 Pointer Network"></a>3.2 Pointer Network</h2><p>Pointer Network模型的提出主要是为了解决输出序列的符号由输入序列而来的问题, 因此模型提出使用attention机制作为指针从输入序列中挑选符号作为输出.</p>
 <h2 id="3-3-Model-Details"><a href="#3-3-Model-Details" class="headerlink" title="3.3 Model Details"></a>3.3 Model Details</h2><p><strong>LSTM Preprocessing Layer</strong></p>
 <p>利用lstm分别对passage和query进行编码,目的是获得包含上下文信息的representation.</p>
-<script type="math/tex; mode=display">H^p = \overrightarrow{LSTM}(P) , H^q = \overrightarrow{LSTM}(Q) ,H^p \in R^{l \times P},H^q \in R^{l \times Q} ​</script><p><br><br></p>
+<p>$$ H^p = \overrightarrow{LSTM}(P) , H^q = \overrightarrow{LSTM}(Q) ,H^p \in R^{l \times P},H^q \in R^{l \times Q} ​$$</p>
+<p><br><br></p>
 <p><strong>Match-LSTM Layer</strong></p>
 <p>match-lstm顺序浏览一段passage, 在passage的第i个token处,计算该token和query中各个token的相似度形成注意力score,再根据score对$H^q​$进行加权,将加权后的$H^q​$ 和$H^p​$ 拼接后送入lstm中进行编码.</p>
-<script type="math/tex; mode=display">\overrightarrow{G}_i = tanh(W^qH^q + (W^ph^p_i + W^r\overrightarrow{h}_{i-1}^r + b^p)\bigotimes e_Q)</script><script type="math/tex; mode=display">\overrightarrow{\alpha}_i = softmax(w^T\overrightarrow{G}_i + b \bigotimes e^Q)​</script><p>$W^q,W^p,W^r \in R^{l \times l}, b^p,w \in R^l , b \in R​$ 这些都是可学习的参数,$\bigotimes e_Q​$ 是把一个向量重复Q次,Q是query的seq_len.</p>
+<p>$$\overrightarrow{G}_i = tanh(W^qH^q + (W^ph^p_i + W^r\overrightarrow{h}_{i-1}^r + b^p)\bigotimes e_Q)$$</p>
+<p>$$\overrightarrow{\alpha}_i = softmax(w^T\overrightarrow{G}_i + b \bigotimes e^Q)​$$</p>
+<p>$W^q,W^p,W^r \in R^{l \times l}, b^p,w \in R^l , b \in R​$ 这些都是可学习的参数,$\bigotimes e_Q​$ 是把一个向量重复Q次,Q是query的seq_len.</p>
 <p>$H^q$是query所有token的向量表示, $h_i^p$ 是passage的第i个单词的向量表示,$\overrightarrow{h}_{i-1}^r$是lstm前一个时刻的隐藏状态,根据这三个变量得到$\overrightarrow{G}_i$ 即第i个token对query中的共Q个token打的分数, 再送入softmax中得到$\overrightarrow{\alpha}_i$ .</p>
-<script type="math/tex; mode=display">\overrightarrow{Z}_i=\left[ \begin{matrix}h_i^p\\H^q\overrightarrow{\alpha}^T_i\end{matrix}\right]​</script><p>$\overrightarrow{Z}_i$即是lstm第i个时刻的输入.</p>
-<script type="math/tex; mode=display">\overrightarrow{h}_r^i = \overrightarrow{LSTM}(\overrightarrow{z}_i+\overrightarrow{h}^r_{i-1})</script><p>得到第i个时刻的隐藏层状态.</p>
+<p>$$\overrightarrow{Z}_i=\left[ \begin{matrix}h_i^p\\H^q\overrightarrow{\alpha}^T_i\end{matrix}\right]​$$</p>
+<p>$\overrightarrow{Z}_i$即是lstm第i个时刻的输入.</p>
+<p>$$ \overrightarrow{h}_r^i = \overrightarrow{LSTM}(\overrightarrow{z}_i+\overrightarrow{h}^r_{i-1}) $$</p>
+<p>得到第i个时刻的隐藏层状态.</p>
 <p>注意,上述仅为单向的lstm的过程,实际的match_lstm是双向的.</p>
 <p>最后得到</p>
-<script type="math/tex; mode=display">H^r=\left[ \begin{matrix}\overleftarrow{H}^r\\\overrightarrow{H}^r\end{matrix}\right]</script><p>将两个方向的lstm输出进行拼接得到match-lstm最后的输出,送到Pointer layer进行输出.</p>
+<p>$$H^r=\left[ \begin{matrix}\overleftarrow{H}^r\\\overrightarrow{H}^r\end{matrix}\right]$$</p>
+<p>将两个方向的lstm输出进行拼接得到match-lstm最后的输出,送到Pointer layer进行输出.</p>
 <p><strong>Answer Pointer Layer</strong></p>
 <hr>
 <p><strong>The Sequence Model</strong></p>
 <p>答案 $a = (a_1,a_2,…)$ ,$a_k$ 的值在1到P+1之间,  P是passage的长度, P+1则代表answer结束.</p>
-<script type="math/tex; mode=display">h_k^a = \overrightarrow{LSTM}(\widetilde{H}^r\beta^T_k,h_{k-1}^a)</script><p>$\widetilde{H}^r \in R^{2l \times (P+1)}$是Match-lstm的输出再拼接了一维零向量组成,把lstm输出的隐藏层状态拿去和$\widetilde{H}^r​$做相似度计算,最后得到P+1维的概率分布, 即是对答案的预测概率.</p>
+<p>$$h_k^a = \overrightarrow{LSTM}(\widetilde{H}^r\beta^T_k,h_{k-1}^a)$$</p>
+<p>$\widetilde{H}^r \in R^{2l \times (P+1)}$是Match-lstm的输出再拼接了一维零向量组成,把lstm输出的隐藏层状态拿去和$\widetilde{H}^r​$做相似度计算,最后得到P+1维的概率分布, 即是对答案的预测概率.</p>
 <p><strong>The Boundary Model</strong></p>
 <p>Boundary和sequence model类似,不同处是只需要预测两个indices即开始位置和结束位置. 作者对Boundary model增加了搜索机制, 限制了答案长度的情况下全局搜索最大化开始概率乘结束概率的点.</p>
 
