@@ -109,10 +109,17 @@
 <meta property="og:site_name" content="Shenge&#39;s Blog">
 <meta property="og:description" content="Chapter 2 Regular Expressions, Text Normalization, Edit Distance">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-13T07:40:42.291Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/maxmatch.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/bpe1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/bpe2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/stringAlign.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/med1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/med2.png">
+<meta property="og:updated_time" content="2019-08-14T08:30:53.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Speech and Language Processing----Chapter 2">
 <meta name="twitter:description" content="Chapter 2 Regular Expressions, Text Normalization, Edit Distance">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/13/S-A-L-P-chapter2/maxmatch.png">
 
 
 
@@ -364,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  12
+                  664
                 </span>
               
 
@@ -380,7 +387,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -405,7 +412,137 @@
 
 <p><br><br></p>
 <a id="more"></a>
-<h1 id="2-1-Regular-Expressions"><a href="#2-1-Regular-Expressions" class="headerlink" title="2.1 Regular Expressions"></a>2.1 Regular Expressions</h1>
+<h1 id="2-1-Regular-Expressions"><a href="#2-1-Regular-Expressions" class="headerlink" title="2.1 Regular Expressions"></a>2.1 Regular Expressions</h1><h2 id="2-1-1-Basic-Regular-Expression-Patterns"><a href="#2-1-1-Basic-Regular-Expression-Patterns" class="headerlink" title="2.1.1 Basic Regular Expression Patterns"></a>2.1.1 Basic Regular Expression Patterns</h2><ul>
+<li><p><strong>/woodchuck/</strong> match any string containing substring wordchuck</p>
+</li>
+<li><p>RE are <strong>case sensitive</strong></p>
+</li>
+<li>square braces [ ] specifies a <strong>disjunction</strong> of characters to match.<ul>
+<li>/[wW]oodchuck/ matches woodchuck or Woodchuck</li>
+<li>/[abc]/ matches a or b or c</li>
+</ul>
+</li>
+<li>square braces [ ] with the <strong>dash (-)</strong> to specify any one character in a <strong>range</strong><ul>
+<li>/[A-Z]/          an upper case letter</li>
+<li>/[a-z]/                   a lower case letter</li>
+<li>/[0-9]/               matches a single digit</li>
+</ul>
+</li>
+<li>square braces [ ] with the <strong>caretˆ</strong> placed the first symbol after [ to <strong>negate </strong><ul>
+<li>/[ˆA-Z]/            not an upper case letter</li>
+<li>/[ˆSs]/              neither ‘S’ nor ‘s’</li>
+<li>/[eˆ]/                either ‘e’ or ‘ˆ’</li>
+</ul>
+</li>
+<li>use the <strong>question mark /?/</strong> which means <strong>“the preceding character or nothing”</strong><ul>
+<li>/woodchucks?/      woodchuck or woodchucks</li>
+<li>/colou?r/             color or colour</li>
+</ul>
+</li>
+<li><strong>/*/</strong> means “<strong>zero or more occurrences</strong> of the immediately previous character or regular expression”<ul>
+<li>/a*/                     zero or more “a” or anything else</li>
+<li>/[ab]*/                    aaaa or abab or anything else</li>
+</ul>
+</li>
+<li><p><strong>/+/</strong> means “<strong>one or more occurrences</strong> of the immediately previous character or regular expression”</p>
+<ul>
+<li>/a+/                    a or aaaa</li>
+<li>/[ab]+/                   b or ababab</li>
+</ul>
+</li>
+<li><p><strong>/./</strong> a <strong>wildcard</strong> expression that matches <strong>any single character (except a carriage return)</strong></p>
+<ul>
+<li>/beg.n/                      begin or begun or beg’n</li>
+</ul>
+</li>
+<li><p><strong>/^/</strong> and <strong>/$/</strong> matches the <strong>begin and end</strong> of a line</p>
+<ul>
+<li>/ˆThe dog.$/        a line that contains only the phrase <em>The dog.</em></li>
+</ul>
+</li>
+<li><strong>/\b/</strong> matches a word boundary, and <strong>/\B/</strong> matches a non-boundary, word is defined as any sequence of digits, letters and underscores.<ul>
+<li>/\b99\b/                    match “are 99 dollars” and “$99 “, not match “299”</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-1-2-Disjunction-Grouping-and-Precedence"><a href="#2-1-2-Disjunction-Grouping-and-Precedence" class="headerlink" title="2.1.2 Disjunction, Grouping, and Precedence"></a>2.1.2 Disjunction, Grouping, and Precedence</h2><ul>
+<li>the <strong>disjunction operator | </strong> <ul>
+<li>pattern /cat|dog/ matches either the string cat or the string dog</li>
+</ul>
+</li>
+<li>the <strong>parenthesis operators ( and )</strong><ul>
+<li>Enclosing a pattern in parentheses makes it act like a single character for the purposes of neighboring operators</li>
+<li>/gupp(y|ies)/                 guppy or guppies</li>
+</ul>
+</li>
+<li><strong>operator precedence hierarchy</strong>(from highest to lowest)<ul>
+<li>Parenthesis                           ()</li>
+<li>Counters                                * + ? {}</li>
+<li>Sequences and anchors          the ˆmy end$ </li>
+<li>Disjunction                                 |</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-4-Text-Normalization"><a href="#2-4-Text-Normalization" class="headerlink" title="2.4 Text Normalization"></a>2.4 Text Normalization</h1><h2 id="2-4-1-Unix-tools-for-crude-tokenization-and-normalization"><a href="#2-4-1-Unix-tools-for-crude-tokenization-and-normalization" class="headerlink" title="2.4.1 Unix tools for crude tokenization and normalization"></a>2.4.1 Unix tools for crude tokenization and normalization</h2><ul>
+<li><p>tr -sc ‘A-Za-z’ ‘\n’ &lt; text.txt | sort | uniq -c</p>
+<ul>
+<li>tr -c: complements to non-alphabet</li>
+<li>tr -s: squeezes all sequences into a single character </li>
+<li>uniq -c: collapse and count them</li>
+<li>a naive word tokenization</li>
+</ul>
+</li>
+<li><p>tr -sc ’A-Za-z’ ’\n’ &lt; sh.txt | tr A-Z a-z | sort | uniq -c</p>
+<ul>
+<li>collapse all the upper case to lower case</li>
+</ul>
+</li>
+<li>tr -sc ’A-Za-z’ ’\n’ &lt; sh.txt | tr A-Z a-z | sort | uniq -c | sort -n -r<ul>
+<li>sort -n: sort numerically</li>
+<li>sort -r: sort reversely</li>
+<li>find the frequent words</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-2-The-MaxMatch-Algorithms"><a href="#2-4-2-The-MaxMatch-Algorithms" class="headerlink" title="2.4.2 The MaxMatch Algorithms"></a>2.4.2 The MaxMatch Algorithms</h2><ul>
+<li>chooses the longest word in the dictionary that matches the input at the current position, then iteratively applied again starting from the new pointer position</li>
+</ul>
+<p><img src="maxmatch.png" alt></p>
+<h2 id="2-4-3-Collapsing-words-Lemmatization-and-Stemming"><a href="#2-4-3-Collapsing-words-Lemmatization-and-Stemming" class="headerlink" title="2.4.3 Collapsing words: Lemmatization and Stemming"></a>2.4.3 Collapsing words: Lemmatization and Stemming</h2><ul>
+<li><p><strong>morphological parsing</strong> : find the smaller meaning-bearing units called <strong>morphemes</strong> in a word</p>
+<ul>
+<li><strong>stems</strong>—the central morpheme of the word, supplying the main meaning</li>
+<li><strong>affixes</strong>—adding “additional” meanings of various kinds</li>
+</ul>
+</li>
+<li><p><strong>The Porter Stemmer </strong>: based on series of rewrite rules run in series, e.g.</p>
+<ul>
+<li>ATIONAL → ATE (e.g., relational → relate) </li>
+<li>ING → (delete) if stem contains vowel (e.g., motoring → motor) </li>
+<li>SSES → SS (e.g., grasses → grass)</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-4-Byte-Pair-Encoding"><a href="#2-4-4-Byte-Pair-Encoding" class="headerlink" title="2.4.4 Byte-Pair Encoding"></a>2.4.4 Byte-Pair Encoding</h2><ul>
+<li><p>an algorithm to tokenize words which can help deal with the problem of <strong>unknown</strong> words</p>
+<ul>
+<li>First begins with the set of symbols equal to the set of characters, then iteratively merge the most frequent pair of characters, replace it with new merged symbol. Count and merge until we’ve done k merges.The resulting symbol set will consist of the original set of characters plus k new symbols.</li>
+</ul>
+<p><img src="bpe1.png" alt></p>
+</li>
+</ul>
+<p><img src="bpe2.png" alt></p>
+<h1 id="2-5-Minimum-Edit-Distance"><a href="#2-5-Minimum-Edit-Distance" class="headerlink" title="2.5 Minimum Edit Distance"></a>2.5 Minimum Edit Distance</h1><ul>
+<li><strong>minimum edit distance</strong> between two strings is defined as the minimum number of editing operations (operations like insertion, deletion, substitution) needed to transform one string into another.</li>
+</ul>
+<p><img src="stringAlign.png" alt></p>
+<h2 id="2-5-1-The-Minimum-Edit-Distance-Algorithm"><a href="#2-5-1-The-Minimum-Edit-Distance-Algorithm" class="headerlink" title="2.5.1 The Minimum Edit Distance Algorithm"></a>2.5.1 The Minimum Edit Distance Algorithm</h2><ul>
+<li>use dynamic programming, define D(i, j) as the edit distance between X[1..i] and Y[1.. j]</li>
+</ul>
+<p><img src="med1.png" alt></p>
+<p><img src="med2.png" alt></p>
+<p>​    </p>
+
       
     </div>
     
@@ -594,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-Regular-Expressions"><span class="nav-text">2.1 Regular Expressions</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-Regular-Expressions"><span class="nav-text">2.1 Regular Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-1-Basic-Regular-Expression-Patterns"><span class="nav-text">2.1.1 Basic Regular Expression Patterns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-2-Disjunction-Grouping-and-Precedence"><span class="nav-text">2.1.2 Disjunction, Grouping, and Precedence</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-Text-Normalization"><span class="nav-text">2.4 Text Normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-1-Unix-tools-for-crude-tokenization-and-normalization"><span class="nav-text">2.4.1 Unix tools for crude tokenization and normalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-2-The-MaxMatch-Algorithms"><span class="nav-text">2.4.2 The MaxMatch Algorithms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3-Collapsing-words-Lemmatization-and-Stemming"><span class="nav-text">2.4.3 Collapsing words: Lemmatization and Stemming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-4-Byte-Pair-Encoding"><span class="nav-text">2.4.4 Byte-Pair Encoding</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-Minimum-Edit-Distance"><span class="nav-text">2.5 Minimum Edit Distance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-1-The-Minimum-Edit-Distance-Algorithm"><span class="nav-text">2.5.1 The Minimum Edit Distance Algorithm</span></a></li></ol></li></ol></div>
             
 
           </div>
