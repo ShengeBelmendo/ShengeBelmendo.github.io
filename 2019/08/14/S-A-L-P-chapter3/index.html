@@ -109,10 +109,30 @@
 <meta property="og:site_name" content="Shenge&#39;s Blog">
 <meta property="og:description" content="Chapter 3 N-gram Language Models    “You are uniformly charming!” cried he, with a smile ofassociating and now and then I bowed and they perceived a chaise and four to wish for.  ​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T09:41:58.183Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm4.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm6.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm7.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm8.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm9.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm10.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm11.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm12.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm13.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm14.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm15.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm16.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm17.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm18.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm19.png">
+<meta property="og:updated_time" content="2019-08-16T05:10:24.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Speech and Language Processing----Chapter 3">
 <meta name="twitter:description" content="Chapter 3 N-gram Language Models    “You are uniformly charming!” cried he, with a smile ofassociating and now and then I bowed and they perceived a chaise and four to wish for.  ​">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/14/S-A-L-P-chapter3/lm1.png">
 
 
 
@@ -364,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  41
+                  521
                 </span>
               
 
@@ -380,7 +400,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -410,6 +430,104 @@
 </blockquote>
 <p align="right">Random sentence generated from a Jane Austen trigram model</p>
 
+<a id="more"></a>
+<h1 id="What-is-LM"><a href="#What-is-LM" class="headerlink" title="What is LM?"></a>What is LM?</h1><ul>
+<li><strong>language model</strong>: assign probabilities to sequences of words.</li>
+<li><strong>n-gram LM</strong>: estimate the probability of the last word of an n-gram given the previous words, and also to assign probabilities to entire sequences </li>
+</ul>
+<h1 id="3-1-N-Grams"><a href="#3-1-N-Grams" class="headerlink" title="3.1 N-Grams"></a>3.1 N-Grams</h1><ul>
+<li><p>one simple way to estimate the probability:</p>
+<p><img src="lm1.png" alt></p>
+<ul>
+<li>problem: language is so creative that we won’t always have enough sentences.</li>
+</ul>
+</li>
+<li><p>one thing we can do is decompose the joint probability $p(W_1,W_2,…,W_n)( = p(W_1^n))$ using the <strong>chain rule of probability</strong>:</p>
+</li>
+</ul>
+<p><img src="lm2.png" alt></p>
+<ul>
+<li><p><strong>Markov</strong> assumption: assume that the probability of a word depends only on the previous word,</p>
+</li>
+<li><p>When we use a <strong>bigram</strong> model to predict the conditional probability of the next word, we are thus making the following approximation:</p>
+<p><img src="lm3.png" alt></p>
+</li>
+<li><p><strong>n-gram</strong>:</p>
+<p><img src="lm4.png" alt></p>
+</li>
+<li><p><strong>maximum likelihood estimation</strong>:</p>
+</li>
+</ul>
+<p><img src="lm5.png" alt></p>
+<h1 id="3-2-Evaluating-Language-Models"><a href="#3-2-Evaluating-Language-Models" class="headerlink" title="3.2 Evaluating Language Models"></a>3.2 Evaluating Language Models</h1><ul>
+<li>We use the <strong>perplexity</strong> of a language model on test sets to evaluate the LM.</li>
+<li>For a test set W=w1w1…wN:</li>
+</ul>
+<p><img src="lm6.png" alt></p>
+<ul>
+<li>For bigram LMs:</li>
+</ul>
+<p><img src="lm7.png" alt></p>
+<h1 id="3-4-Smoothing"><a href="#3-4-Smoothing" class="headerlink" title="3.4 Smoothing"></a>3.4 Smoothing</h1><ul>
+<li>To keep a language model from assigning zero probability to unseen n-grams, we’ll have to shave off a bit of probability mass from some more frequent events and give it to the events we’ve never seen. This modification is called <strong>smoothing or discounting.</strong> There are some ways to do smoothing:<ul>
+<li>add-1 smoothing</li>
+<li>add-k smoothing</li>
+<li>stupid backoff</li>
+<li>Kneser-Ney smoothing</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-4-1-Laplace-Smoothing-add-one-smoothing"><a href="#3-4-1-Laplace-Smoothing-add-one-smoothing" class="headerlink" title="3.4.1 Laplace Smoothing(add-one smoothing)"></a>3.4.1 Laplace Smoothing(add-one smoothing)</h2><ul>
+<li>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi:</li>
+</ul>
+<p><img src="lm8.png" alt></p>
+<ul>
+<li>after smoothing:</li>
+</ul>
+<p><img src="lm9.png" alt></p>
+<ul>
+<li>or we can use the adjusted count $c^*$:</li>
+</ul>
+<p><img src="lm10.png" alt></p>
+<ul>
+<li>discount $d_c$ :the ratio of the discounted counts to the original counts:</li>
+</ul>
+<p><img src="lm11.png" alt></p>
+<h2 id="3-4-2-Add-k-smoothing"><a href="#3-4-2-Add-k-smoothing" class="headerlink" title="3.4.2 Add-k smoothing"></a>3.4.2 Add-k smoothing</h2><p><img src="lm12.png" alt></p>
+<h2 id="3-4-3-Backoff-and-Interpolation"><a href="#3-4-3-Backoff-and-Interpolation" class="headerlink" title="3.4.3 Backoff and Interpolation"></a>3.4.3 Backoff and Interpolation</h2><ul>
+<li><p><strong>backoff</strong>: use a lower-order n-gram if we have zero evidence for a higher-order n-gram</p>
+<ul>
+<li>e.g. we are trying to compute $p(w_n|w_{n-2}w_{n-1})$ but we have no examples of trigram $w_{n-2}w_{n-1}w_{n}​$ , so we use the bigram probability instead.</li>
+</ul>
+</li>
+<li><p><strong>interpolation</strong>: ix the probability estimates from all the n-gram estimators, weighing and combining the trigram, bigram, and unigram counts. $\lambda_i$ sum to 1.</p>
+</li>
+</ul>
+<p><img src="lm13.png" alt></p>
+<h1 id="3-5-Kneser-Ney-Smoothing"><a href="#3-5-Kneser-Ney-Smoothing" class="headerlink" title="3.5 Kneser-Ney Smoothing"></a>3.5 Kneser-Ney Smoothing</h1><ul>
+<li>Recall that discounting of the counts for frequent n-grams is necessary to save some probability mass for the smoothing algorithm to distribute to the unseen n-grams.</li>
+</ul>
+<h2 id="3-5-1-Absolute-discounting"><a href="#3-5-1-Absolute-discounting" class="headerlink" title="3.5.1 Absolute discounting"></a>3.5.1 Absolute discounting</h2><ul>
+<li>Absolute discounting formalizes this intuition by subtracting a fixed (absolute) discount d from each count. The intuition is that since we have good estimates already for the very high counts, a small discount d won’t affect them much.</li>
+</ul>
+<p><img src="lm14.png" alt></p>
+<h2 id="3-5-2-Kneser-Ney-Smoothing"><a href="#3-5-2-Kneser-Ney-Smoothing" class="headerlink" title="3.5.2 Kneser-Ney Smoothing"></a>3.5.2 Kneser-Ney Smoothing</h2><ul>
+<li>$P_{CONTINUATION}$ unigram model<ul>
+<li>base our estimate of unigram model on the number of different contexts word w has appeared in</li>
+</ul>
+</li>
+</ul>
+<p><img src="lm15.png" alt></p>
+<ul>
+<li>The final equation for Interpolated <strong>Kneser-Ney smoothing</strong> for bigrams is then: </li>
+</ul>
+<p><img src="lm16.png" alt></p>
+<p><img src="lm17.png" alt></p>
+<ul>
+<li>The general recursive formulation is as follows:</li>
+</ul>
+<p><img src="lm18.png" alt></p>
+<p><img src="lm19.png" alt></p>
 
       
     </div>
@@ -519,8 +637,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/xiongmao.jpeg" alt="北冥有深">
           <p class="site-author-name" itemprop="name">北冥有深</p>
@@ -580,6 +707,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-LM"><span class="nav-text">What is LM?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-1-N-Grams"><span class="nav-text">3.1 N-Grams</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-2-Evaluating-Language-Models"><span class="nav-text">3.2 Evaluating Language Models</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-4-Smoothing"><span class="nav-text">3.4 Smoothing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-1-Laplace-Smoothing-add-one-smoothing"><span class="nav-text">3.4.1 Laplace Smoothing(add-one smoothing)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-2-Add-k-smoothing"><span class="nav-text">3.4.2 Add-k smoothing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-3-Backoff-and-Interpolation"><span class="nav-text">3.4.3 Backoff and Interpolation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-5-Kneser-Ney-Smoothing"><span class="nav-text">3.5 Kneser-Ney Smoothing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-1-Absolute-discounting"><span class="nav-text">3.5.1 Absolute discounting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-2-Kneser-Ney-Smoothing"><span class="nav-text">3.5.2 Kneser-Ney Smoothing</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
