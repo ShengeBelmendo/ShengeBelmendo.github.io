@@ -101,13 +101,13 @@
 
 
 
-<meta name="description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
+<meta name="description" content="原文请看 [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf).   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-l">
 <meta name="keywords" content="nlp,MRC,Deep learning,SQuAD,R-Net">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文分享----R-Net">
 <meta property="og:url" content="http://yoursite.com/2019/03/10/thesis-R-Net/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
+<meta property="og:description" content="原文请看 [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf).   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-l">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/model.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/formula4.png">
@@ -119,7 +119,7 @@
 <meta property="og:updated_time" content="2019-03-10T10:46:02.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文分享----R-Net">
-<meta name="twitter:description" content="原文请看 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS.   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query">
+<meta name="twitter:description" content="原文请看 [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf).   1.背景介绍R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-l">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/10/thesis-R-Net/model.png">
 
 
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  567
+                  582
                 </span>
               
 
@@ -409,7 +409,7 @@
       
 
       
-        <font size="5"><center>原文请看 <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf" target="_blank" rel="noopener">R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS</a>.</center></font>
+        <font size="5"><center>原文请看 [R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf).</center></font>
 
 <p><br><br></p>
 <h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h1><p>R-Net 是微软亚洲研究院的NLP组提出的模型，它使用了character-level和word-level的embedding单独编码passage和query，然后使用gated attention-based GRUs来编码query-aware的passage，接着使用self-attention来重新搜寻信息，最后使用类似Match-LSTM中利用pointer-network来生成答案。</p>
@@ -429,8 +429,7 @@
 <p><br><br></p>
 <p><strong>Gated attention-based RNNs</strong></p>
 <p>该层RNN的计算公式如下:</p>
-<p>$$v^p_t = RNN(v^P_{t-1},[u^P_t,c_t])​$$</p>
-<p>$u_t^p$是上一层编码后的passage向量，$c_t$是由query向量经attention-pooling后的向量</p>
+<script type="math/tex; mode=display">v^p_t = RNN(v^P_{t-1},[u^P_t,c_t])​</script><p>$u_t^p$是上一层编码后的passage向量，$c_t$是由query向量经attention-pooling后的向量</p>
 <p>注意力$c_t​$的计算没什么特别:</p>
 <p><img src="formula4.png" alt></p>
 <p>所谓gate即:</p>
@@ -439,8 +438,7 @@
 <p><br><br></p>
 <p><strong>Self-Matching Attention</strong></p>
 <p>self-attention被用来更专注于提取context的相关信息。该层RNN的计算公式如下:</p>
-<p>$$h^p_t = RNN(h^P_{t-1},[v^P_t,c_t])$$</p>
-<p>而$c_t$是对$v^P$的attention-pooling的向量:</p>
+<script type="math/tex; mode=display">h^p_t = RNN(h^P_{t-1},[v^P_t,c_t])</script><p>而$c_t$是对$v^P$的attention-pooling的向量:</p>
 <p><img src="formula8.png" alt></p>
 <p>和上一层一样，这一层也额外给输入加了一层gate。</p>
 <p><br><br></p>
@@ -589,7 +587,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
