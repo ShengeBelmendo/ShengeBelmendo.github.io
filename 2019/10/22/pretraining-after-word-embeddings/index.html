@@ -109,10 +109,18 @@
 <meta property="og:site_name" content="Shenge&#39;s Blog">
 <meta property="og:description" content="后词向量时代的nlp预训练技术   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-22T12:56:37.406Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tt_matrix.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tf_formula.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/idf_formula.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tf_idf_formula.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tf_idf_matrix.png">
+<meta property="og:updated_time" content="2019-10-23T13:22:37.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pretraining_after_word_embeddings">
 <meta name="twitter:description" content="后词向量时代的nlp预训练技术   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
 
 
 
@@ -364,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  463
+                  1k
                 </span>
               
 
@@ -380,7 +388,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -410,12 +418,31 @@
 <li>one-hot表征向量稀疏且巨大，消耗存储和计算资源。</li>
 </ul>
 <p>那么，我们自然想寻找一种单词的向量化表示，它最好有以下优点：</p>
+<a id="more"></a>
 <ul>
 <li>词向量维度不要太大，避免资源浪费。</li>
 <li>词向量能具有一定的语义属性，简单点就是，两个向量的余弦距离可以用来表征两个词语语义之间的相似程度，余弦值越大，语义相似程度越大。我们期望这个词向量能具有很好的语义属性，能分辨同义词和反义词，知道词的相似程度和相关程度，知道词的隐含意义，比如能告诉我们猫和狗很像，告诉我们冷和热相反，等等等等。</li>
 </ul>
 <p>想要找到好的单词表征，我们还是得去思考一个词的含义究竟由什么确定。在1953年，哲学家Ludwig Wittgenstein提出<strong>“the meaning of a word is its use in the language”</strong>，同期的一些语言学家Joos (1950), Harris (1954), and Firth (1957) 提出：<strong>define a word by its environment or distribution in language use</strong>，其idea是出现在更相似语境中的词更倾向于具有相同的语义，这听起来就很合理！</p>
-<a id="more"></a>
+<p>一个很自然的想法是通过统计一个词周围出现过什么词以及词的个数来作为这个词的语义表征，这蕴含着两方面想法：一是通过上下文出现的词汇来表示单词的语义，二是用一系列数字，一个向量，语义空间中的一个点来表征一个词汇。因此，用向量来表示词汇也被称为word embeddings, 即词被embedded在向量空间中。</p>
+<p>下面介绍两种词汇的向量表征模型，<strong>tf-idf</strong>模型和<strong>word2vec</strong>模型：</p>
+<h2 id="Co-occurence-matrix"><a href="#Co-occurence-matrix" class="headerlink" title="Co-occurence matrix"></a>Co-occurence matrix</h2><p>从distributonal hypothesis很自然引申出来的一个概念就是co-occurence矩阵，也分为两种，term-document matrix和term-term(word-word) matrix。下图是term-document matrix, 这个矩阵就是在各个document中统计出现词的个数，矩阵的行可以作为term的特征，列可以作为document的特征，但是一般作为document的特征使用更常见，可以用于IR信息检索领域查找最匹配的document。<img src="td_matrix.png" alt="1571834239686"></p>
+<p>term-term co-occurence matrix则更常用于作为词的特征，矩阵大小一般是|V|*|V|。</p>
+<p><img src="tt_matrix.png" alt></p>
+<h2 id="Tf-idf-模型"><a href="#Tf-idf-模型" class="headerlink" title="Tf-idf 模型"></a>Tf-idf 模型</h2><p>考虑term-document matrix, 我们想讲term出现的频率作为document的特征，但是这合理吗？有一些词比如good在所有的document中都出现了很多次，但是像fool就只在部分document中出现，那么显然fool就比good更加有判别力，是个更重要的特征。</p>
+<p>首先是term frequency:</p>
+<p><img src="tf_formula.png" alt></p>
+<p>很好理解，就是term在document中出现的次数再压缩一下。</p>
+<p>然后是inverse document frequency:</p>
+<p><img src="idf_formula.png" alt></p>
+<p>N是所有document的个数，df是某个词某个term出现过的document的个数，比如下图中document总共就四个,N=4,good在四篇文章中都出现过，因此df=4，idf计算出来等于0。</p>
+<p>最后：</p>
+<p><img src="tf_idf_formula.png" alt></p>
+<p>想法就是，我现在想要用document出现了哪些单词作为特征，但如果有一个单词你所有document都出现了，那么我认为你这个特征对于区分document没啥帮助，我就舍弃这个特征。</p>
+<p><img src="td_matrix.png" alt="1571834239686"></p>
+<p><img src="tf_idf_matrix.png" alt></p>
+<p>利用co-occurence matrix矩阵作为词汇特征还是有很多问题，比如词汇表通常很大，所以特征维度就会很大，并且容易出现稀疏问题，因此并不是一种很好的特征表示方法。</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2>
       
     </div>
     
@@ -608,7 +635,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li></ol></div>
             
 
           </div>
