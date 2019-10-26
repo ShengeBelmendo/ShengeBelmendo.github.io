@@ -101,13 +101,13 @@
 
 
 
-<meta name="description" content="后词向量时代的nlp预训练技术   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正">
+<meta name="description" content="NLP预训练发展史   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正交的没有任何">
 <meta name="keywords" content="nlp,pretraining,ELMo,GPT,BERT,XLNet,ALBert">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pretraining_after_word_embeddings">
+<meta property="og:title" content="NLP预训练发展史">
 <meta property="og:url" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="后词向量时代的nlp预训练技术   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正">
+<meta property="og:description" content="NLP预训练发展史   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正交的没有任何">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tt_matrix.png">
@@ -116,10 +116,15 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tf_idf_formula.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/tf_idf_matrix.png">
-<meta property="og:updated_time" content="2019-10-23T13:22:37.318Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/lm.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/nnlm.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/word2vec.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling_formula.png">
+<meta property="og:updated_time" content="2019-10-26T08:27:38.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pretraining_after_word_embeddings">
-<meta name="twitter:description" content="后词向量时代的nlp预训练技术   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正">
+<meta name="twitter:title" content="NLP预训练发展史">
+<meta name="twitter:description" content="NLP预训练发展史   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正交的没有任何">
 <meta name="twitter:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/td_matrix.png">
 
 
@@ -155,7 +160,7 @@
 
 
 
-  <title>pretraining_after_word_embeddings | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>NLP预训练发展史 | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -305,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pretraining_after_word_embeddings</h1>
+          <h1 class="post-title" itemprop="name headline">NLP预训练发展史</h1>
         
 
         <div class="post-meta">
@@ -372,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.8k
                 </span>
               
 
@@ -388,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -409,7 +414,7 @@
       
 
       
-        <font size="5"><center>后词向量时代的nlp预训练技术</center></font>
+        <font size="5"><center>NLP预训练发展史</center></font>
 
 <p><br><br></p>
 <h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h1><p>NLP领域的预训练技术主要关注在<strong>词语的语义表征</strong>上。那么，我们首先看看nlp的<strong>representation learning</strong>。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用<strong>one-hot向量</strong>来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：</p>
@@ -442,7 +447,23 @@
 <p><img src="td_matrix.png" alt="1571834239686"></p>
 <p><img src="tf_idf_matrix.png" alt></p>
 <p>利用co-occurence matrix矩阵作为词汇特征还是有很多问题，比如词汇表通常很大，所以特征维度就会很大，并且容易出现稀疏问题，因此并不是一种很好的特征表示方法。</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>下面我们要使用一个short(50-1000维)并且dense(大多数维非0)的向量来作为单词的表征，这样的向量维度小容易学习并且dense的属性也好易于捕捉一些语义属性。</p>
+<p>词嵌入的概念最早提出是在Bengio在2003年发表在JMLR上的论文，是用神经网络来训练语言模型。语言模型最初是用来评估一个句子的合理性，即它出现的概率或者说是一个合理的句子的概率有多大，可以用来在语音识别解码时挑选最合理的句子，一个句子的概率可以看成一堆条件概率的乘积：</p>
+<p>$$P(s) = p(w_1)p(w_2|w_1)p(w_3|w_1w_2)…p(w_n|w_1w_2…w_{n-1})​$$</p>
+<p>我们对概率进行一定的近似：</p>
+<p><img src="lm.png" alt></p>
+<p>即下一个词出现的概率只跟前面的n个词相关。</p>
+<p>那么，如果要设计一个神经网络来做语言模型，我们该怎么做？下图是Bengio的做法。</p>
+<p><img src="nnlm.png" alt></p>
+<p>把每个词的one-hot乘以词嵌入矩阵，也就是|V|*|d|大小的参数矩阵，转换成词向量，再继续过两层全连接进行分类。E矩阵和U矩阵都可以用来做词嵌入矩阵。其实Bengio的本意是想做神经网络语言模型，词嵌入矩阵只是副产品。</p>
+<p>而2013年word2vec现世，word2vec和NNLM架构类似，只不过训练的目的就是为了获取词向量矩阵，因此它提出了两种训练任务和两种训练方法。两种训练任务是CBOW和skip-gram，CBOW的想法就是根据上下文词去预测中心词，skip-gram的想法就是根据中心词去预测周围词的分布。两种训练方法是negative sampling和hierarchical softmax, 后一种不常用还麻烦，主要介绍skip-gram with negative sampling(SGNS)。</p>
+<p><img src="word2vec.png" alt></p>
+<p>skip-gram原始的做法是center word的one-hot乘以输入词向量矩阵获得中心词的词向量，再拿中心词的词向量和输出词向量矩阵中的每个词内积作为相似分数，最后进行softmax得到概率分布。这样的问题就是每个训练样例都需要进行|V|次内积操作，运算量非常大。因此作者提出了negative sampling。与直接预测周围词的分布不同，我们选取一个center word和另外一个word，判断另外一个word是不是在center word的周围，这样训练一次只需要进行一次向量内积，实际训练的时候，真实的周围词作为正样例，再根据词频进行采样出随机词作为负样例。如下图所示：</p>
+<p><img src="negative_sampling.png" alt></p>
+<p>采样负样例的计算公式：</p>
+<p><img src="negative_sampling_formula.png" alt></p>
+<p>$\alpha$一般0.75，负样例的个数作者建议对小数据集，一个正样例配5-20个负样例，大数据集则配2-5个负样例。</p>
+<h1 id="2-后词向量时代"><a href="#2-后词向量时代" class="headerlink" title="2.后词向量时代"></a>2.后词向量时代</h1>
       
     </div>
     
@@ -635,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-后词向量时代"><span class="nav-text">2.后词向量时代</span></a></li></ol></div>
             
 
           </div>
