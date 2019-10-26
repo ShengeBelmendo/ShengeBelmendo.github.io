@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/word2vec.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling_formula.png">
-<meta property="og:updated_time" content="2019-10-26T08:27:38.200Z">
+<meta property="og:updated_time" content="2019-10-26T14:57:51.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP预训练发展史">
 <meta name="twitter:description" content="NLP预训练发展史   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正交的没有任何">
@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.8k
+                  2.7k
                 </span>
               
 
@@ -393,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  6
+                  9
                 </span>
               
             </div>
@@ -449,8 +449,7 @@
 <p>利用co-occurence matrix矩阵作为词汇特征还是有很多问题，比如词汇表通常很大，所以特征维度就会很大，并且容易出现稀疏问题，因此并不是一种很好的特征表示方法。</p>
 <h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>下面我们要使用一个short(50-1000维)并且dense(大多数维非0)的向量来作为单词的表征，这样的向量维度小容易学习并且dense的属性也好易于捕捉一些语义属性。</p>
 <p>词嵌入的概念最早提出是在Bengio在2003年发表在JMLR上的论文，是用神经网络来训练语言模型。语言模型最初是用来评估一个句子的合理性，即它出现的概率或者说是一个合理的句子的概率有多大，可以用来在语音识别解码时挑选最合理的句子，一个句子的概率可以看成一堆条件概率的乘积：</p>
-<p>$$P(s) = p(w_1)p(w_2|w_1)p(w_3|w_1w_2)…p(w_n|w_1w_2…w_{n-1})​$$</p>
-<p>我们对概率进行一定的近似：</p>
+<script type="math/tex; mode=display">P(s) = p(w_1)p(w_2|w_1)p(w_3|w_1w_2)...p(w_n|w_1w_2...w_{n-1})​</script><p>我们对概率进行一定的近似：</p>
 <p><img src="lm.png" alt></p>
 <p>即下一个词出现的概率只跟前面的n个词相关。</p>
 <p>那么，如果要设计一个神经网络来做语言模型，我们该怎么做？下图是Bengio的做法。</p>
@@ -463,7 +462,64 @@
 <p>采样负样例的计算公式：</p>
 <p><img src="negative_sampling_formula.png" alt></p>
 <p>$\alpha$一般0.75，负样例的个数作者建议对小数据集，一个正样例配5-20个负样例，大数据集则配2-5个负样例。</p>
-<h1 id="2-后词向量时代"><a href="#2-后词向量时代" class="headerlink" title="2.后词向量时代"></a>2.后词向量时代</h1>
+<h1 id="2-后词向量时代"><a href="#2-后词向量时代" class="headerlink" title="2.后词向量时代"></a>2.后词向量时代</h1><p>总结一下上述的内容，用神经网络学习word embedding就是利用语言模型这一训练任务去训练得到词向量矩阵，每个词有其对应的词向量，以此来迁移到下游的nlp任务中作为一个token的单独的语义表征。但为什么word embedding之前没有那么火热呢？主要是因为多义词问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.我喜欢吃苹果。</span><br><span class="line">2.我喜欢用苹果的产品。</span><br></pre></td></tr></table></figure>
+<p>由于word embedding针对每一个特定的词只产生一个词向量，所以苹果公司和水果苹果的语义势必会混淆在一个语义向量里，对于其本身的语义和下游任务来说都是一个很大的问题。对于多义词问题，也有很多研究人员提出了解决方案，但ELMo以一种更简洁优雅的方法解决了多义词问题。后续像GPT、BERT、XLNet等预训练模型也相继涌现，成就了现在NLP预训练领域的后词向量时代。</p>
+<p>关于预训练来说，这个给预训练下一个简介的定义：</p>
+<font size="4"><center>预训练就是通过设定预训练任务，把训练数据里的语言学知识装载到模型里。</center></font>
+
+<p>所以，重要的其实就是<strong>预训练任务</strong>和<strong>预训练模型</strong>(特征提取器)。就预训练任务来说，XLNet的论文里把现在的语言学预训练任务分成了<strong>Autoregressive</strong> LM和<strong>Autoencoding</strong>两类，autoregressive model在统计学里指一类随机过程，这类随机过程里我们可以根据过去的值和序列去预测将来的序列行为，放在语言学里也就是语言模型，根据上文或者下文去预测下一个词，像ELMo、GPT都属于典型的AR；而另一类autoencoding和autoencoder模型的概念有点类似，是想要去重建原始序列，类似BERT，它把原序列一些词汇mask掉然后重建原序列。但归根结底，这些预训练任务都是利用词汇的上下文词汇去预测词汇，也和 <strong>词汇的语义由它周围的其他词的分布决定</strong> 的理论相同，可以理解成广义上的语言模型。</p>
+<h2 id="主流预训练模型之间的区别"><a href="#主流预训练模型之间的区别" class="headerlink" title="主流预训练模型之间的区别"></a>主流预训练模型之间的区别</h2><p>刚才提到预训练的主要区别就在预训练任务和模型的选择上，那么我们进行一个简单的比较。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>预训练任务</th>
+<th>特征提取器</th>
+<th>参数量</th>
+<th>训练数据集</th>
+<th>训练时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELMo</td>
+<td>双向语言模型</td>
+<td>Bi-LSTM</td>
+<td>93.6M</td>
+<td>1 billion(1B Word Benchmark)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>GPT</td>
+<td>单向语言模型</td>
+<td>Transformer</td>
+<td>110M</td>
+<td>1 billion(BookCorpus dataset)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>BERT</td>
+<td>mask language model</td>
+<td>Transformer</td>
+<td>110M/340M</td>
+<td>3.3 billion(BooksCorpus and Wikipedia)</td>
+<td>16\64 TPU chips 4 days</td>
+</tr>
+<tr>
+<td>XLNet</td>
+<td>permutation language model</td>
+<td>Transformer-xl</td>
+<td>110M/340M</td>
+<td>3.3billion(base) / 32.89 billion(large)</td>
+<td>512 TPU v3 chips 2.5 days(large)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>简单的总结，预训练任务上选择双向语言模型是很重要的，这让模型可以从上下文学到很多信息，像mask lm和permutation lm其实都是双向语言模型的变种，可以同时利用上文和下文的信息。而特征处理器上，不用说，transformer独占鳌头。最后，BERT和XLNet的参数量都很大，训练的语料库都很大，因此训练时长也很长，XLNet-large的语料库达到了惊人的32.89billion，花费的训练资源也是惊人。不说了，更大更深更强的模型，更适合的预训练任务以及更多的训练数据，这些都很重要。</p>
+<h2 id="ELMo-Deep-contextualized-representations"><a href="#ELMo-Deep-contextualized-representations" class="headerlink" title="ELMo(Deep contextualized representations)"></a>ELMo(Deep contextualized representations)</h2>
       
     </div>
     
@@ -656,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-后词向量时代"><span class="nav-text">2.后词向量时代</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-后词向量时代"><span class="nav-text">2.后词向量时代</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主流预训练模型之间的区别"><span class="nav-text">主流预训练模型之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMo-Deep-contextualized-representations"><span class="nav-text">ELMo(Deep contextualized representations)</span></a></li></ol></li></ol></div>
             
 
           </div>

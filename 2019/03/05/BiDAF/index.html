@@ -101,20 +101,20 @@
 
 
 
-<meta name="description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
+<meta name="description" content="原文请看 [Bidirectional Attention Flow for Machine Comprehension](https://arxiv.org/abs/1611.01603).   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的em">
 <meta name="keywords" content="nlp,MRC,BiDAF,Deep learning,SQuAD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文分享----BiDAF">
 <meta property="og:url" content="http://yoursite.com/2019/03/05/BiDAF/index.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
+<meta property="og:description" content="原文请看 [Bidirectional Attention Flow for Machine Comprehension](https://arxiv.org/abs/1611.01603).   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的em">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/05/BiDAF/model.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/05/BiDAF/TextCNN.png">
 <meta property="og:updated_time" content="2019-03-05T13:58:43.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文分享----BiDAF">
-<meta name="twitter:description" content="原文请看 Bidirectional Attention Flow for Machine Comprehension.   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to">
+<meta name="twitter:description" content="原文请看 [Bidirectional Attention Flow for Machine Comprehension](https://arxiv.org/abs/1611.01603).   1.背景介绍BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的em">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/05/BiDAF/model.png">
 
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  888
+                  894
                 </span>
               
 
@@ -404,7 +404,7 @@
       
 
       
-        <font size="5"><center>原文请看 <a href="https://arxiv.org/abs/1611.01603" target="_blank" rel="noopener">Bidirectional Attention Flow for Machine Comprehension</a>.</center></font>
+        <font size="5"><center>原文请看 [Bidirectional Attention Flow for Machine Comprehension](https://arxiv.org/abs/1611.01603).</center></font>
 
 <p><br><br></p>
 <h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1.背景介绍"></a>1.背景介绍</h1><p>BiDAF全称是Bi-Directional Attention Flow network, 它使用了character-level, word-level和contextual 层面的embeddings, 并且较为创新的使用了双向注意力即context-to-query和query-to-context来获得query-aware的上下文表示.</p>
@@ -423,10 +423,8 @@
 <p><strong>Character Embedding Layer</strong></p>
 <p><img src="TextCNN.png" alt></p>
 <p>$x_{i:i+j}$ 表示字母$x_i,x_{i+1},…,x_{i+j}%+$的拼接, $x_i \in R^k$ , 假设有卷积核$W \in R^{h \times k}$ , 特征$c_i$从字母$x_{i:i+h-1}$ 中提取而来</p>
-<p>$$c_i = f(w \centerdot x_{i:i+h-1} + b )​$$</p>
-<p>把卷积核应用到所有位置上得到feature map c</p>
-<p>$$c = [c_1,c_2,…,c_{n-h+1}],c \in R^{n-h+1}$$</p>
-<p>应用max pooling则得到 $\widehat c = max(c)$, 每个卷积核一个特征值,100个卷积核即100维的Character-lever word representation.</p>
+<script type="math/tex; mode=display">c_i = f(w \centerdot x_{i:i+h-1} + b )​</script><p>把卷积核应用到所有位置上得到feature map c</p>
+<script type="math/tex; mode=display">c = [c_1,c_2,...,c_{n-h+1}],c \in R^{n-h+1}</script><p>应用max pooling则得到 $\widehat c = max(c)$, 每个卷积核一个特征值,100个卷积核即100维的Character-lever word representation.</p>
 <p><br><br></p>
 <p><strong>Word Embedding Layer</strong></p>
 <p>word的embedding使用Glove作为预训练的词向量,然后将character-level和word-lever的embedding拼接后送入<em>Highway Network</em>,分别得到context和query的向量化表示.</p>
@@ -437,15 +435,13 @@
 <p><strong>Attention Flow Layer</strong></p>
 <p>BiDAF的attention计算不依赖于lstm网络的隐藏层状态,单单利用context和query的表征向量加上一个相似度函数来计算.</p>
 <p>相似度矩阵$S \in R^{T \times J}$, $S_{tj}$是第t个context中token和第j个query中token的相似度:</p>
-<p>$$S_{tj} = \alpha (H_{:t},U_{:j}) \in R$$ </p>
-<p>$\alpha$ 是相似度函数, $\alpha(h,u) = W^T_{(s)}[h;u;h \circ u]$</p>
+<script type="math/tex; mode=display">S_{tj} = \alpha (H_{:t},U_{:j}) \in R</script><p>$\alpha$ 是相似度函数, $\alpha(h,u) = W^T_{(s)}[h;u;h \circ u]$</p>
 <p><strong>Context-to-query Attention</strong> </p>
 <p>$S_{t:}$ 即第t个context的token和所有query中token的相似度,经过softmax函数后得到$a_t$ , $a_t = softmax(S_{t:}) \in R^J$和对query加权后,即可得到attended query vectors即$\widetilde{U}_{:t} = \sum_ja_{tj}U_{;j}$</p>
 <p><strong>Query-to-context Attention</strong></p>
 <p>在S矩阵中每一行取最大值,即代表query对这一行所代表的context的token的关注程度, $b = softmax(max_{col}(S)) \in R^T$, 根据关注程度对context加权$\widetilde{h} = \sum_tb_tH_{:t} \in R^{2d}$,加权后重复T词次,得到attended context vertors $\widetilde{H} \in R^{2d \times T}$</p>
 <p>最后输出$G$ 矩阵</p>
-<p>$$G_{:t} = \beta(H_{:t}, \widetilde U_{:t},\widetilde H_{:t}) \in R^{dG}$$</p>
-<p>$G_{:t}$是对应第t个context word的向量, $\beta$ 可以是任意的神经网络,也可以是一些简单的点乘拼接运算.</p>
+<script type="math/tex; mode=display">G_{:t} = \beta(H_{:t}, \widetilde U_{:t},\widetilde H_{:t}) \in R^{dG}</script><p>$G_{:t}$是对应第t个context word的向量, $\beta$ 可以是任意的神经网络,也可以是一些简单的点乘拼接运算.</p>
 <p>作者使用$\beta(h,\widetilde u,\widetilde h) = [h;\widetilde u;h \circ \widetilde u;h \circ \widetilde h] \in R^{8d \times T}$</p>
 <p><br><br></p>
 <p><strong>Model Layer</strong></p>
@@ -453,9 +449,7 @@
 <p><br><br></p>
 <p><strong>Output Layer</strong></p>
 <p>预测开始位置和结束位置的概率.</p>
-<p>$$p^1 = softmax(W^T_{(p^1)}[G;M])$$</p>
-<p>$$p^2 = softmax(W^T_{(p^2)}[G;M^2])$$</p>
-<p>$M^2$是把M矩阵传入到另一个lstm网络里得到的.</p>
+<script type="math/tex; mode=display">p^1 = softmax(W^T_{(p^1)}[G;M])</script><script type="math/tex; mode=display">p^2 = softmax(W^T_{(p^2)}[G;M^2])</script><p>$M^2$是把M矩阵传入到另一个lstm网络里得到的.</p>
 <p>loss使用负对数去最大化初始位置和结束位置的预测概率.</p>
 
       
