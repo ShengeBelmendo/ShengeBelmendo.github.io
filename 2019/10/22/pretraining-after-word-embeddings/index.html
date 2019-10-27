@@ -121,7 +121,20 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/word2vec.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/negative_sampling_formula.png">
-<meta property="og:updated_time" content="2019-10-26T14:57:51.457Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/elmo_arch.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/elmo_lm.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/elmo_usage.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/elmo_results.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/gpt_arch.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/gpt_lm.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/gpt_arch1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/gpt_tasks.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/gpt_results.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/bert_arch.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/bert_input.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/bert_usage.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/22/pretraining-after-word-embeddings/bert_results.png">
+<meta property="og:updated_time" content="2019-10-27T09:03:42.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP预训练发展史">
 <meta name="twitter:description" content="NLP预训练发展史   1.背景介绍NLP领域的预训练技术主要关注在词语的语义表征上。那么，我们首先看看nlp的representation learning。所以，我们应该怎么样去表征一个词汇呢？最简单的，可以用one-hot向量来代替一个词语，即长度为词表大小的向量，用其中特定一维为1来表示特定的词。但显然，这样有很多缺点：  one-hot表征缺少语义信息，任意词汇向量之间都是正交的没有任何">
@@ -377,7 +390,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2.7k
+                  4k
                 </span>
               
 
@@ -393,7 +406,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  9
+                  14
                 </span>
               
             </div>
@@ -431,10 +444,10 @@
 <p>想要找到好的单词表征，我们还是得去思考一个词的含义究竟由什么确定。在1953年，哲学家Ludwig Wittgenstein提出<strong>“the meaning of a word is its use in the language”</strong>，同期的一些语言学家Joos (1950), Harris (1954), and Firth (1957) 提出：<strong>define a word by its environment or distribution in language use</strong>，其idea是出现在更相似语境中的词更倾向于具有相同的语义，这听起来就很合理！</p>
 <p>一个很自然的想法是通过统计一个词周围出现过什么词以及词的个数来作为这个词的语义表征，这蕴含着两方面想法：一是通过上下文出现的词汇来表示单词的语义，二是用一系列数字，一个向量，语义空间中的一个点来表征一个词汇。因此，用向量来表示词汇也被称为word embeddings, 即词被embedded在向量空间中。</p>
 <p>下面介绍两种词汇的向量表征模型，<strong>tf-idf</strong>模型和<strong>word2vec</strong>模型：</p>
-<h2 id="Co-occurence-matrix"><a href="#Co-occurence-matrix" class="headerlink" title="Co-occurence matrix"></a>Co-occurence matrix</h2><p>从distributonal hypothesis很自然引申出来的一个概念就是co-occurence矩阵，也分为两种，term-document matrix和term-term(word-word) matrix。下图是term-document matrix, 这个矩阵就是在各个document中统计出现词的个数，矩阵的行可以作为term的特征，列可以作为document的特征，但是一般作为document的特征使用更常见，可以用于IR信息检索领域查找最匹配的document。<img src="td_matrix.png" alt="1571834239686"></p>
+<h2 id="1-1-Co-occurence-matrix"><a href="#1-1-Co-occurence-matrix" class="headerlink" title="1.1 Co-occurence matrix"></a>1.1 Co-occurence matrix</h2><p>从distributonal hypothesis很自然引申出来的一个概念就是co-occurence矩阵，也分为两种，term-document matrix和term-term(word-word) matrix。下图是term-document matrix, 这个矩阵就是在各个document中统计出现词的个数，矩阵的行可以作为term的特征，列可以作为document的特征，但是一般作为document的特征使用更常见，可以用于IR信息检索领域查找最匹配的document。<img src="td_matrix.png" alt="1571834239686"></p>
 <p>term-term co-occurence matrix则更常用于作为词的特征，矩阵大小一般是|V|*|V|。</p>
 <p><img src="tt_matrix.png" alt></p>
-<h2 id="Tf-idf-模型"><a href="#Tf-idf-模型" class="headerlink" title="Tf-idf 模型"></a>Tf-idf 模型</h2><p>考虑term-document matrix, 我们想讲term出现的频率作为document的特征，但是这合理吗？有一些词比如good在所有的document中都出现了很多次，但是像fool就只在部分document中出现，那么显然fool就比good更加有判别力，是个更重要的特征。</p>
+<h2 id="1-2-Tf-idf-模型"><a href="#1-2-Tf-idf-模型" class="headerlink" title="1.2 Tf-idf 模型"></a>1.2 Tf-idf 模型</h2><p>考虑term-document matrix, 我们想讲term出现的频率作为document的特征，但是这合理吗？有一些词比如good在所有的document中都出现了很多次，但是像fool就只在部分document中出现，那么显然fool就比good更加有判别力，是个更重要的特征。</p>
 <p>首先是term frequency:</p>
 <p><img src="tf_formula.png" alt></p>
 <p>很好理解，就是term在document中出现的次数再压缩一下。</p>
@@ -447,9 +460,10 @@
 <p><img src="td_matrix.png" alt="1571834239686"></p>
 <p><img src="tf_idf_matrix.png" alt></p>
 <p>利用co-occurence matrix矩阵作为词汇特征还是有很多问题，比如词汇表通常很大，所以特征维度就会很大，并且容易出现稀疏问题，因此并不是一种很好的特征表示方法。</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>下面我们要使用一个short(50-1000维)并且dense(大多数维非0)的向量来作为单词的表征，这样的向量维度小容易学习并且dense的属性也好易于捕捉一些语义属性。</p>
+<h2 id="1-3-Word2vec"><a href="#1-3-Word2vec" class="headerlink" title="1.3 Word2vec"></a>1.3 Word2vec</h2><p>下面我们要使用一个short(50-1000维)并且dense(大多数维非0)的向量来作为单词的表征，这样的向量维度小容易学习并且dense的属性也好易于捕捉一些语义属性。</p>
 <p>词嵌入的概念最早提出是在Bengio在2003年发表在JMLR上的论文，是用神经网络来训练语言模型。语言模型最初是用来评估一个句子的合理性，即它出现的概率或者说是一个合理的句子的概率有多大，可以用来在语音识别解码时挑选最合理的句子，一个句子的概率可以看成一堆条件概率的乘积：</p>
-<script type="math/tex; mode=display">P(s) = p(w_1)p(w_2|w_1)p(w_3|w_1w_2)...p(w_n|w_1w_2...w_{n-1})​</script><p>我们对概率进行一定的近似：</p>
+<p>$$P(s) = p(w_1)p(w_2|w_1)p(w_3|w_1w_2)…p(w_n|w_1w_2…w_{n-1})​$$</p>
+<p>我们对概率进行一定的近似：</p>
 <p><img src="lm.png" alt></p>
 <p>即下一个词出现的概率只跟前面的n个词相关。</p>
 <p>那么，如果要设计一个神经网络来做语言模型，我们该怎么做？下图是Bengio的做法。</p>
@@ -465,12 +479,12 @@
 <h1 id="2-后词向量时代"><a href="#2-后词向量时代" class="headerlink" title="2.后词向量时代"></a>2.后词向量时代</h1><p>总结一下上述的内容，用神经网络学习word embedding就是利用语言模型这一训练任务去训练得到词向量矩阵，每个词有其对应的词向量，以此来迁移到下游的nlp任务中作为一个token的单独的语义表征。但为什么word embedding之前没有那么火热呢？主要是因为多义词问题。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.我喜欢吃苹果。</span><br><span class="line">2.我喜欢用苹果的产品。</span><br></pre></td></tr></table></figure>
 <p>由于word embedding针对每一个特定的词只产生一个词向量，所以苹果公司和水果苹果的语义势必会混淆在一个语义向量里，对于其本身的语义和下游任务来说都是一个很大的问题。对于多义词问题，也有很多研究人员提出了解决方案，但ELMo以一种更简洁优雅的方法解决了多义词问题。后续像GPT、BERT、XLNet等预训练模型也相继涌现，成就了现在NLP预训练领域的后词向量时代。</p>
-<p>关于预训练来说，这个给预训练下一个简介的定义：</p>
+<p>关于预训练来说，这个给预训练下一个简洁的定义：</p>
 <font size="4"><center>预训练就是通过设定预训练任务，把训练数据里的语言学知识装载到模型里。</center></font>
 
+<p><br><br></p>
 <p>所以，重要的其实就是<strong>预训练任务</strong>和<strong>预训练模型</strong>(特征提取器)。就预训练任务来说，XLNet的论文里把现在的语言学预训练任务分成了<strong>Autoregressive</strong> LM和<strong>Autoencoding</strong>两类，autoregressive model在统计学里指一类随机过程，这类随机过程里我们可以根据过去的值和序列去预测将来的序列行为，放在语言学里也就是语言模型，根据上文或者下文去预测下一个词，像ELMo、GPT都属于典型的AR；而另一类autoencoding和autoencoder模型的概念有点类似，是想要去重建原始序列，类似BERT，它把原序列一些词汇mask掉然后重建原序列。但归根结底，这些预训练任务都是利用词汇的上下文词汇去预测词汇，也和 <strong>词汇的语义由它周围的其他词的分布决定</strong> 的理论相同，可以理解成广义上的语言模型。</p>
-<h2 id="主流预训练模型之间的区别"><a href="#主流预训练模型之间的区别" class="headerlink" title="主流预训练模型之间的区别"></a>主流预训练模型之间的区别</h2><p>刚才提到预训练的主要区别就在预训练任务和模型的选择上，那么我们进行一个简单的比较。</p>
-<div class="table-container">
+<h2 id="2-1-主流预训练模型之间的区别"><a href="#2-1-主流预训练模型之间的区别" class="headerlink" title="2.1 主流预训练模型之间的区别"></a>2.1 主流预训练模型之间的区别</h2><p>刚才提到预训练的主要区别就在预训练任务和模型的选择上，那么我们进行一个简单的比较。</p>
 <table>
 <thead>
 <tr>
@@ -517,9 +531,78 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>简单的总结，预训练任务上选择双向语言模型是很重要的，这让模型可以从上下文学到很多信息，像mask lm和permutation lm其实都是双向语言模型的变种，可以同时利用上文和下文的信息。而特征处理器上，不用说，transformer独占鳌头。最后，BERT和XLNet的参数量都很大，训练的语料库都很大，因此训练时长也很长，XLNet-large的语料库达到了惊人的32.89billion，花费的训练资源也是惊人。不说了，更大更深更强的模型，更适合的预训练任务以及更多的训练数据，这些都很重要。</p>
-<h2 id="ELMo-Deep-contextualized-representations"><a href="#ELMo-Deep-contextualized-representations" class="headerlink" title="ELMo(Deep contextualized representations)"></a>ELMo(Deep contextualized representations)</h2>
+<h2 id="2-2-ELMo-Deep-contextualized-representations"><a href="#2-2-ELMo-Deep-contextualized-representations" class="headerlink" title="2.2 ELMo(Deep contextualized representations)"></a>2.2 ELMo(Deep contextualized representations)</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="elmo_arch.png" alt></p>
+<ul>
+<li>每个word的context-independent的表示是通过charCNN来获得的</li>
+<li>context-independent的编码由两层的Bi-LSTM来完成</li>
+</ul>
+<h3 id="预训练过程"><a href="#预训练过程" class="headerlink" title="预训练过程"></a>预训练过程</h3><p><img src="elmo_lm.png" alt></p>
+<ul>
+<li>预训练时把center word左边词送入forward方向的lstm，右边词送入backward方向的lstm，分别获得了两个方向的最后一层最后时刻的representation，分别通过softmax层进行分类，同时根据两边的lstm去预测中心词。</li>
+<li>低层用于提取context-independent的charCNN和softmax分类层的参数是共享的</li>
+</ul>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p><img src="elmo_usage.png" alt></p>
+<ul>
+<li>ELMo使用时作为下流任务的特征提取器，把两层lstm的编码进行加权后作为word的表征提供给下流使用</li>
+</ul>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="elmo_results.png" alt></p>
+<ul>
+<li>较好的解决了多义词问题</li>
+</ul>
+<h2 id="2-3-GPT"><a href="#2-3-GPT" class="headerlink" title="2.3 GPT"></a>2.3 GPT</h2><ul>
+<li>GPT的贡献主要在于一使用了Transformer作为特征提取器，二是将fine-tuning的预训练模型使用方法推广开来</li>
+</ul>
+<h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="gpt_arch.png" alt></p>
+<ul>
+<li>one-hot词汇向量通过乘以词嵌入矩阵转化为embeddings向量</li>
+<li>编码通过12层的Transformer block来完成</li>
+</ul>
+<h3 id="预训练过程-1"><a href="#预训练过程-1" class="headerlink" title="预训练过程"></a>预训练过程</h3><p><img src="gpt_lm.png" alt></p>
+<ul>
+<li>预训练目标是传统的单向语言模型，最大化下个词汇的预测概率</li>
+</ul>
+<p><img src="gpt_arch1.png" alt></p>
+<ul>
+<li>上述公式是模型的预测过程，先通过词向量矩阵获得context-independent的词汇表征，然后通过transformer_block编码，最后通过softmax层预测。</li>
+</ul>
+<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ul>
+<li>GPT是基于fine-tuning式的预训练模型使用，简单点说就是做下游任务时，只需要在网络最后加上一些简单的结构比如全连接层，然后使用较小的学习率训练较少的epoch即可</li>
+</ul>
+<p><img src="gpt_tasks.png" alt></p>
+<ul>
+<li>上图是gpt用于其他各种nlp任务时如何进行微调，对于多个段落组成的任务，我们需要额外训练delim分隔符对应的词向量</li>
+</ul>
+<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p><img src="gpt_results.png" alt></p>
+<p>没啥好看的，反正就是outperform各种SOTA。</p>
+<h3 id="2-4-BERT"><a href="#2-4-BERT" class="headerlink" title="2.4 BERT"></a>2.4 BERT</h3><p>BERT是上述预训练模型的集大成者，主要一使用了Transformer作为编码器，二提出了mask language model，从而可以很好的利用上文和下文的消息。</p>
+<p>这里，我们要讨论一下mask language model这个预训练任务的重要性。</p>
+<ul>
+<li>对于传统的单向语言模型来说，它用单词的上文词汇来预测该单词，这样缺失了下文的信息，对于一些可以看到完整序列的任务来说，这样预训练出来模型的编码性能就会不好，因为难以利用下文信息。</li>
+<li>对于ELMo里用的双向语言模型，它其实是一种弱双向，它把上文和下文分开编码，上文送到一个lstm编码，下文送到另一个lstm编码，虽然同时使用上文和下文的信息，但是上文和下文的信息没有进行很好的融合互动，而大家都知道，在做完形填空任务时，我们同时看单词的上文和下文，然后综合起来判断这样最准。</li>
+<li>那么为什么mask language model重要呢？设想一下，如果我们要用Transformer来做双向语言模型要怎么做。对于一个序列 We went to Suzhou last week. 我们如果要预测 to这个单词，单向语言模型就是把we went送入Transformer来预测下一个词，而类似ELMo中的双向语言模型则是把we went送入一个Transformer, 把Suzhou last week送入另外一个Transformer，最后结合两个Transformer的结果，但这样就没法进行上下文的交互，因为很明显，went后面可以接很多词，suzhou前面也可以接很多词，这很明显不够好。mask lm则是把原序列变成 We went [MASK] Suzhou last week然后送入一个Transformer进行编码，这样上下文之间就有了充分的交互，就能很好的预测出[MASK]地方的字符应该是to。</li>
+</ul>
+<h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="bert_arch.png" alt></p>
+<ul>
+<li>网络结构没啥好说的，和GPT基本一致，BERT-base是12层的Transformer block用于和GPT作对比，BERT-large则是24层的Transformer block。</li>
+</ul>
+<h3 id="预训练过程-2"><a href="#预训练过程-2" class="headerlink" title="预训练过程"></a>预训练过程</h3><h4 id="数据输入格式"><a href="#数据输入格式" class="headerlink" title="数据输入格式"></a>数据输入格式</h4><p><img src="bert_input.png" alt></p>
+<p>数据的输入开头有[CLS]符号，不同段落之间有[SEP]符号，然后每个词的输入由三部分向量组成，词汇的嵌入向量，学习而来的segment embeddings以及生成的position embeddings，三部分相加作为模型的输入。</p>
+<h4 id="Mask-language-model"><a href="#Mask-language-model" class="headerlink" title="Mask language model"></a>Mask language model</h4><ul>
+<li>首先随机挑选15%的词准备进行mask</li>
+<li>其次，对于15%的词，80%的词替换成[MASK]，10%随机换成别的词，10%的词保持不变</li>
+<li>最后，要求重建原序列</li>
+</ul>
+<h4 id="Next-Sentence-Prediction"><a href="#Next-Sentence-Prediction" class="headerlink" title="Next Sentence Prediction"></a>Next Sentence Prediction</h4><ul>
+<li>next sentencce prediction是一个辅助任务，其主要是为了让模型更好的学习输入两个segment之间的联系</li>
+<li>任务的具体内容是判断两个段落是不是连续的，50%的example是一段文章中连续的片段，50%随机挑选。</li>
+</ul>
+<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><p>因为BERT和GPT同为fine-tuning模式的预训练模型，因此也是在最后接一些简单的输出层进行微调。</p>
+<p><img src="bert_usage.png" alt></p>
+<p>还有如果把BERT作为特征提取器时，不同的使用方式也会带来不同的效果，如下图所示：</p>
+<p><img src="bert_results.png" alt></p>
+<p>概括起来就是，finetune整个模型最后，如果要用来作为特征提取，请把最后四五六层都用上别只用一层。</p>
+
       
     </div>
     
@@ -712,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Co-occurence-matrix"><span class="nav-text">Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tf-idf-模型"><span class="nav-text">Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-text">Word2vec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-后词向量时代"><span class="nav-text">2.后词向量时代</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主流预训练模型之间的区别"><span class="nav-text">主流预训练模型之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMo-Deep-contextualized-representations"><span class="nav-text">ELMo(Deep contextualized representations)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-背景介绍"><span class="nav-text">1.背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Co-occurence-matrix"><span class="nav-text">1.1 Co-occurence matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Tf-idf-模型"><span class="nav-text">1.2 Tf-idf 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Word2vec"><span class="nav-text">1.3 Word2vec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-后词向量时代"><span class="nav-text">2.后词向量时代</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-主流预训练模型之间的区别"><span class="nav-text">2.1 主流预训练模型之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-ELMo-Deep-contextualized-representations"><span class="nav-text">2.2 ELMo(Deep contextualized representations)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预训练过程"><span class="nav-text">预训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-GPT"><span class="nav-text">2.3 GPT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-1"><span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预训练过程-1"><span class="nav-text">预训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法-1"><span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-text">效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-BERT"><span class="nav-text">2.4 BERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-2"><span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预训练过程-2"><span class="nav-text">预训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据输入格式"><span class="nav-text">数据输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mask-language-model"><span class="nav-text">Mask language model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Next-Sentence-Prediction"><span class="nav-text">Next Sentence Prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法-2"><span class="nav-text">使用方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
