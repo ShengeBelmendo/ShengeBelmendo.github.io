@@ -300,7 +300,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/12/17/attention/" itemprop="url">attention</a></h1>
+                <a class="post-title-link" href="/2019/12/17/attention/" itemprop="url">attention机制综述及在NLP中应用</a></h1>
         
 
         <div class="post-meta">
@@ -323,161 +323,6 @@
           </span>
 
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-  <div>
-    
-  </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/22/thesis-probe-for-syntax-in-word-representation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="北冥有深">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/xiongmao.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shenge's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/22/thesis-probe-for-syntax-in-word-representation/" itemprop="url">论文分享----syntax probe in word representation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T19:21:59+08:00">
-                2019-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
             <span class="post-category">
             
               <span class="post-meta-divider">|</span>
@@ -491,7 +336,7 @@
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/nlp/" itemprop="url" rel="index">
-                    <span itemprop="name">nlp</span>
+                    <span itemprop="name">-nlp</span>
                   </a>
                 </span>
 
@@ -522,7 +367,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  182
+                  567
                 </span>
               
 
@@ -538,7 +383,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -560,13 +405,13 @@
 
       
         
-          <font size="5"><center>原文请看 <a href="https://www.aclweb.org/anthology/N19-1419/" target="_blank" rel="noopener">A Structural Probe for Finding Syntax in Word Representations</a>.</center></font>
+          <font size="5"><center>Attention机制综述</center></font>
 
 <p><br><br></p>
-<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1. 背景介绍"></a>1. 背景介绍</h1><p>预训练语言模型层出不穷，且已经在NLP任务里取得很好的结果，但我们更需要去理解这些预训练模型学到了什么语言学知识。作者设计了structual probe去检测word representation space里是否学习到了syntax知识。对ELMo和BERT模型生成的word vectors进行了测试，证明了其较好地学习到了syntax tree的知识。</p>
+<h1 id="1-追根溯源"><a href="#1-追根溯源" class="headerlink" title="1.追根溯源"></a>1.追根溯源</h1><p>Attention机制最早在图像领域于上世纪九几年被提出，火于google发表的论文《Recurrent Models of Visual Attention》，该论文利用attention机制进行图像分类，效果显著提升。而在视觉领域的应用其实挺顺理成章，就像咱们人看图片一样，咱们会有不同的关注点，比如看下图时，我们的注意力肯定一会集中在大猫身上，一会集中在小猫身上，一会又看一看它们身处的环境，如果要对这张图片作出文字描述<code>一只大猫和一只小猫坐在门框外</code>， 那在说<code>一只大猫</code>时，我们的注意力集中在大猫身上，在说<code>一只小猫</code>时，我们的注意力集中在图片中的小猫，而说<code>门框</code>时，我们的注意力则集中在了图片中的门框。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/10/22/thesis-probe-for-syntax-in-word-representation/#more" rel="contents">
+            <a class="btn" href="/2019/12/17/attention/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -757,6 +602,191 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/22/pretraining-after-word-embeddings/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+  <div>
+    
+  </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/22/thesis-probe-for-syntax-in-word-representation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="北冥有深">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/xiongmao.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shenge's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/22/thesis-probe-for-syntax-in-word-representation/" itemprop="url">论文分享----syntax probe in word representation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T19:21:59+08:00">
+                2019-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nlp/" itemprop="url" rel="index">
+                    <span itemprop="name">nlp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  182
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <font size="5"><center>原文请看 <a href="https://www.aclweb.org/anthology/N19-1419/" target="_blank" rel="noopener">A Structural Probe for Finding Syntax in Word Representations</a>.</center></font>
+
+<p><br><br></p>
+<h1 id="1-背景介绍"><a href="#1-背景介绍" class="headerlink" title="1. 背景介绍"></a>1. 背景介绍</h1><p>预训练语言模型层出不穷，且已经在NLP任务里取得很好的结果，但我们更需要去理解这些预训练模型学到了什么语言学知识。作者设计了structual probe去检测word representation space里是否学习到了syntax知识。对ELMo和BERT模型生成的word vectors进行了测试，证明了其较好地学习到了syntax tree的知识。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/22/thesis-probe-for-syntax-in-word-representation/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2162,7 +2192,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2173,7 +2203,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
