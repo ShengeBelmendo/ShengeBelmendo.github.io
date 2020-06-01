@@ -85,7 +85,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="nlp,QA,MRC,deep_learning,">
+  <meta name="keywords" content=",,,">
 
 
 
@@ -101,17 +101,20 @@
 
 
 
-<meta name="description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
-<meta name="keywords" content="nlp,MRC,BiDAF,QANet,R-Net">
+<meta name="description" content="Attention机制综述   1.追根溯源Attention机制最早在图像领域于上世纪九几年被提出，火于google发表的论文《Recurrent Models of Visual Attention》，该论文利用attention机制进行图像分类，效果显著提升。而在视觉领域的应用其实挺顺理成章，就像咱们人看图片一样，咱们会有不同的关注点，比如看下图时，我们的注意力肯定一会集中在大猫身上，一会集">
+<meta name="keywords" content="nlp,attention,Deep learning">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Shenge&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/attention/index.html">
+<meta property="og:title" content="attention机制综述及在NLP中应用">
+<meta property="og:url" content="http://yoursite.com/cache/attention.html">
 <meta property="og:site_name" content="Shenge&#39;s Blog">
-<meta property="og:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta property="og:description" content="Attention机制综述   1.追根溯源Attention机制最早在图像领域于上世纪九几年被提出，火于google发表的论文《Recurrent Models of Visual Attention》，该论文利用attention机制进行图像分类，效果显著提升。而在视觉领域的应用其实挺顺理成章，就像咱们人看图片一样，咱们会有不同的关注点，比如看下图时，我们的注意力肯定一会集中在大猫身上，一会集">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/cache/cat.jpg">
+<meta property="og:updated_time" content="2019-12-17T14:12:42.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shenge&#39;s Blog">
-<meta name="twitter:description" content="这世界一切既然都在变  变动中人世乘除 自然就有些  近于偶然与凑巧的事情发生 哀乐与悲欢 都有他独特的式样">
+<meta name="twitter:title" content="attention机制综述及在NLP中应用">
+<meta name="twitter:description" content="Attention机制综述   1.追根溯源Attention机制最早在图像领域于上世纪九几年被提出，火于google发表的论文《Recurrent Models of Visual Attention》，该论文利用attention机制进行图像分类，效果显著提升。而在视觉领域的应用其实挺顺理成章，就像咱们人看图片一样，咱们会有不同的关注点，比如看下图时，我们的注意力肯定一会集中在大猫身上，一会集">
+<meta name="twitter:image" content="http://yoursite.com/cache/cat.jpg">
 
 
 
@@ -140,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/attention/">
+  <link rel="canonical" href="http://yoursite.com/cache/attention.html">
 
 
 
 
 
-  <title>标签: attention | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>attention机制综述及在NLP中应用 | Shenge's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -171,7 +174,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left  ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,52 +268,44 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>attention<small>标签</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline">attention机制综述及在NLP中应用</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/12/17/attention/" itemprop="url">
-              
-                <span itemprop="name">attention机制综述及在NLP中应用</span>
-              
-            </a>
-        
-      </h2>
+          <font size="5"><center>Attention机制综述</center></font>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-17T20:39:19+08:00" content="2019-12-17">
-          12-17
-        </time>
+<p><br><br></p>
+<h1 id="1-追根溯源"><a href="#1-追根溯源" class="headerlink" title="1.追根溯源"></a>1.追根溯源</h1><p>Attention机制最早在图像领域于上世纪九几年被提出，火于google发表的论文《Recurrent Models of Visual Attention》，该论文利用attention机制进行图像分类，效果显著提升。而在视觉领域的应用其实挺顺理成章，就像咱们人看图片一样，咱们会有不同的关注点，比如看下图时，我们的注意力肯定一会集中在大猫身上，一会集中在小猫身上，一会又看一看它们身处的环境，如果要对这张图片作出文字描述<code>一只大猫和一只小猫坐在门框外</code>， 那在说<code>一只大猫</code>时，我们的注意力集中在大猫身上，在说<code>一只小猫</code>时，我们的注意力集中在图片中的小猫，而说<code>门框</code>时，我们的注意力则集中在了图片中的门框。</p>
+<a id="more"></a>
+<p><img src="cat.jpg" alt></p>
+<p>所以，所谓注意力机制，更强调的是我们会<strong>动态的根据时间的推移或者目的的不同去调整我们对一个整体的不同局部的关注程度</strong>，我们关注的整体可以是图片，那么整体的不同局部就是图像的不同子区域，这个整体可以是一段话，那么不同局部就是句子里不同的单词，而目的往往是序列任务比如对图像进行描述，那么在描述的过程中我们的关注点就会根据我们描述到了哪儿进行动态的调整和改变。这就是attention机制主要的motivation。</p>
+<p>像论文《Neural Machine Translation by Jointly Learning to Align and Translate》就是在机器翻译任务中引入了注意力机制，即生成翻译文本时动态地调整对源文本的注意力，而论文《Show, Attend and Tell: Neural Image Caption Generation with Visual Attention》则是像上述所说在image caption任务中引入了注意力机制，后续所有的类似encoder-decoder架构的任务也都引入了注意力机制。接下来则是google brain的论文《Attention is all you need》利用了attention机制的变种——self-attention，并由此产生了现在非常火热的编码器Transformer。</p>
+<h1 id="2-Encoder-decoder架构下的attention机制"><a href="#2-Encoder-decoder架构下的attention机制" class="headerlink" title="2.Encoder-decoder架构下的attention机制"></a>2.Encoder-decoder架构下的attention机制</h1>
+        
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
 
 
           </div>
@@ -318,6 +313,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -338,8 +337,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/xiongmao.jpeg" alt="北冥有深">
           <p class="site-author-name" itemprop="name">北冥有深</p>
@@ -352,7 +360,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -363,7 +371,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -374,7 +382,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -400,6 +408,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-追根溯源"><span class="nav-text">1.追根溯源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Encoder-decoder架构下的attention机制"><span class="nav-text">2.Encoder-decoder架构下的attention机制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -423,7 +447,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
